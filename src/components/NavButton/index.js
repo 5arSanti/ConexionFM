@@ -13,7 +13,10 @@ const NavButton = ({onPress, title, iconName}) => {
             <Image source={iconName}
                 style={{width: 35, height: 35, objectFit: "cover"}}
             />
-            <Text style={{color: "white", fontSize: 12}}>{title}</Text>
+            <Text 
+                style={{color: "white", fontSize: 14, fontFamily: "Questrial"}}>
+                {title}
+            </Text>
         </TouchableOpacity>
     );
 }

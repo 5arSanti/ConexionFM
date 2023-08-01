@@ -1,4 +1,5 @@
 import React from "react";
+import * as Font from "expo-font";
 
 import { Home } from "../Screens/Home";
 import { RadioContent } from "../Screens/RadioContent";
@@ -18,12 +19,33 @@ const MyProvider = ({children}) => {
         }
     }
 
+    //Fuentes
+    const [fontsLoaded, setFontsLoaded] = React.useState(false);
+
+    React.useEffect(() => {
+        if(!fontsLoaded){
+            loadFonts();   
+        }
+    }, []);
+
+    const loadFonts = async () => {
+        await Font.loadAsync({
+            "Questrial": require("../../assets/fonts/Questrial-Regular.ttf"),
+            "Simple": require("../../assets/fonts/Simple.otf"),
+        })
+        setFontsLoaded(true);
+        
+    }
+
     return(
         <MyContext.Provider
             value={{
                 screenView,
                 setScreenView,
                 RenderView,
+
+                fontsLoaded,
+                loadFonts,
             }}
         >
             {children}

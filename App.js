@@ -2,13 +2,12 @@ import React from 'react';
 
 import { StatusBar } from 'expo-status-bar';
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+
+
 import { MyProvider, MyContext } from './src/Context';
-import { NavButton } from './src/components/NavButton';
 import { NavigationButtons } from './src/components/NavigationButtons';
 
-
 export default function App() {
-
     return (
         <MyProvider>
             <AppContext/>
