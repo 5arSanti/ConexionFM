@@ -1,36 +1,55 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { Video, Audio } from 'expo-av';
+import { Audio } from 'expo-av';
+import { MyContext } from '../../Context';
 
 const LinkAudio = () => {
-    const audioUri = 'https://conexion.fm:8000/stream';
-    const sound = new Audio.Sound();
+    const context = React.useContext(MyContext);
 
-    const playAudio = async () => {
-        try {
-            await sound.loadAsync({uri: audioUri})
-            await sound.playAsync();
+    const renderAudioMode = () => {
+        if(context.loading){
+            return(
+                <Text>Cargando...</Text>
+            );
         }
-        catch(err){
-            alert("Sucedio un error: ", err);
-            console.log(err);
+        if(!context.loading && context.isPlaying){
+            return(
+                <Text>Pausar</Text>
+            );
+        }
+        else if(!context.loading && !context.isPlaying){
+            return(
+                <Text>Reproducir</Text>
+            );
+        }
+    }
+
+    const renderAudioVolume = () => {
+        if(context.volume === 1){
+            return(
+                <Text>Silenciar</Text>
+            );
+        }
+        else if(context.volume === 0){
+            return(
+                <Text>Activar</Text>
+            );
         }
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.audioControlersContainer}>
+            <View style={styles.waveContainer}>
 
-            <TouchableOpacity onPress={() => playAudio()}>
-                <Text>Reproducir</Text>
+            </View>
+
+            <TouchableOpacity onPress={() => context.handleAudio()}>
+                {renderAudioMode()}    
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => context.handleVolume()}>
+                <Text>{renderAudioVolume()}</Text>    
             </TouchableOpacity>
 
-            {/* <Video
-                source={{ uri: videoUri }}
-                shouldPlay
-                useNativeControls
-                style={styles.video}
-                resizeMode="contain"
-            /> */}
         </View>
     );
 }
@@ -38,13 +57,15 @@ const LinkAudio = () => {
 export { LinkAudio };
 
 const styles = StyleSheet.create({
-    container: {
+    audioControlersContainer: {
+        width: "100%",
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
     },
-    video: {
-        width: 300,
-        height: 200,
-    },
+    waveContainer: {
+        width: 340,
+        height: 340,
+        backgroundColor: "#D9D9D9",
+        borderRadius: 25,
+    }
 });

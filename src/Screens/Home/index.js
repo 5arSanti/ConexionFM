@@ -3,8 +3,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { LinkAudio } from "../../components/LinkAudio";
+import React from "react";
+import { MyContext } from "../../Context";
 
 const Home = () => {
+    const context = React.useContext(MyContext);
+
     return(
         <LinearGradient 
             colors={["#FFFFFF", "#BABABA"]}
