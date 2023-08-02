@@ -30,11 +30,10 @@ const MyProvider = ({children}) => {
 
     const loadFonts = async () => {
         await Font.loadAsync({
-            "Questrial": require("../../assets/fonts/Questrial-Regular.ttf"),
+            "Questrial": require("../../assets/fonts/Questrial.ttf"),
             "Simple": require("../../assets/fonts/Simple.otf"),
         })
-        setFontsLoaded(true);
-        
+        setFontsLoaded(true); 
     }
 
     return(

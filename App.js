@@ -20,8 +20,9 @@ const AppContext = () => {
 
     return(
         <View style={styles.container}>
+            <StatusBar style='auto'/>
             <View style={styles.screensContainer}>
-                <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+                <ScrollView contentContainerStyle={styles.scrollViewContainer} style={styles.scrollView}>
                     {context.RenderView()}
                 </ScrollView>
             </View>
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
         gap: 10,
 
         padding: 20,
+        paddingTop: 40,
     },
     screensContainer: {
         width: "100%",
@@ -56,12 +58,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF",
 
         borderRadius: 33,
+        overflow: "hidden",
     },
     scrollViewContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
+    },
+    scrollView: {
+        width: "100%",
+        height: "100%",
     }
 });

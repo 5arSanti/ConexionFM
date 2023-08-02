@@ -1,5 +1,8 @@
-import { StyleSheet, Text, View,} from "react-native";
+import { Image, StyleSheet, Text, View,} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import { ConexionLogo } from "../../components/ConexionLogo";
+import { Title } from "../../components/Title";
+import { LinkAudio } from "../../components/LinkAudio";
 
 const Home = () => {
     return(
@@ -7,7 +10,13 @@ const Home = () => {
             colors={["#FFFFFF", "#BABABA"]}
             style={styles.homeContainer}
         >
-            <Text style={{fontFamily: "Simple"}}>Hola</Text>
+            <ConexionLogo/>
+            <Title 
+                title={"Exclusivamente para ti"} 
+                color={"#848484"}
+                borderColor={"transparent"}
+            />
+            <LinkAudio/>
         </LinearGradient>
     );
 }
@@ -19,7 +28,11 @@ const styles = StyleSheet.create({
         height: "100%",
 
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "column",
         alignItems: "center",
+        gap: 20,
+
+        padding: 20,
+        paddingTop: 40,
     }
 })
