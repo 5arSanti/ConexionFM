@@ -10,10 +10,12 @@ import { AboutUs } from "../Screens/AboutUs";
 export const MyContext = React.createContext();
 
 const MyProvider = ({children}) => {
+    //Loading and Error
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(false);
 
 
+    //Routes
     const [screenView, setScreenView] = React.useState(1);
 
     const RenderView = () => {
@@ -40,6 +42,28 @@ const MyProvider = ({children}) => {
         })
         setFontsLoaded(true); 
     }
+
+    //Iconos
+    const [icons, setIcons] = React.useState({});
+    const iconsList = {
+        home: require("../../assets/nav-icons/home-icon.png"),
+        homeActive: require("../../assets/nav-icons/home-icon2.png"),
+
+        radio: require("../../assets/nav-icons/radio-icon.png"),
+        radioActive: require("../../assets/nav-icons/radio-icon2.png"),
+
+        about: require("../../assets/nav-icons/about-icon.png"),
+        aboutActive: require("../../assets/nav-icons/about-icon2.png"),
+
+        audioPlaying: require("../../assets/icons/app-icons/pause-black-icon.png"), //Sonando
+        audioPause: require("../../assets/icons/app-icons/play-icon.png"), //Pausa
+        audioMute: require("../../assets/icons/app-icons/mute-icon.png"), //Mutear
+        audioNoMute: require("../../assets/icons/app-icons/volume-icon.png"), //Desmutear
+    }
+    React.useEffect(() => {
+        setIcons(iconsList);
+    }, []);
+
 
     //Emisora
     const [isPlaying, setIsPlaying] = React.useState(true);
@@ -134,6 +158,8 @@ const MyProvider = ({children}) => {
 
                 fontsLoaded,
                 loadFonts,
+
+                icons,
 
                 handleAudio,
                 handleVolume,

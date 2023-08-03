@@ -8,10 +8,13 @@ import { NavButton } from "../NavButton";
 const NavigationButtons = () => {
     const context = React.useContext(MyContext);
 
-    const iconMap = {
-        home: require("../../../assets/nav-icons/home-icon.png"),
-        radio: require("../../../assets/nav-icons/radio-icon.png"),
-        about: require("../../../assets/nav-icons/about-icon.png")
+    const handleIcon = (icon, iconActive, viewNumber) => {
+        if(context.screenView === viewNumber){
+            return iconActive;
+        }
+        else if (context.screenView !== viewNumber){
+            return icon;
+        }
     }
 
     return(
@@ -19,17 +22,17 @@ const NavigationButtons = () => {
             <NavButton
                 title={"Inicio"}
                 onPress={() => context.setScreenView(1)}
-                iconName={iconMap.home}
+                iconName={handleIcon(context.icons.home, context.icons.homeActive, 1)}
             />
             <NavButton
                 title={"Contenido"}
                 onPress={() => context.setScreenView(2)}
-                iconName={iconMap.radio}
+                iconName={handleIcon(context.icons.radio, context.icons.radioActive, 2)}
             />
             <NavButton
                 title={"Contacto"}
                 onPress={() => context.setScreenView(3)}
-                iconName={iconMap.about}
+                iconName={handleIcon(context.icons.about, context.icons.aboutActive, 3)}
             />
         </View>
     );

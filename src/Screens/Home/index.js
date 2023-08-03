@@ -16,7 +16,7 @@ const Home = () => {
         >
             <ConexionLogo/>
             <Title 
-                title={"Exclusivamente para ti"} 
+                title={"Exclusivamente para tí."} 
                 color={"#848484"}
                 borderColor={"transparent"}
             />

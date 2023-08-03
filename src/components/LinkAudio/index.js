@@ -1,54 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { Audio } from 'expo-av';
+import { View, StyleSheet } from 'react-native';
 import { MyContext } from '../../Context';
+import { AudioControls } from '../AudioControls';
 
 const LinkAudio = () => {
-    const context = React.useContext(MyContext);
-
-    const renderAudioMode = () => {
-        if(context.loading){
-            return(
-                <Text>Cargando...</Text>
-            );
-        }
-        if(!context.loading && context.isPlaying){
-            return(
-                <Text>Pausar</Text>
-            );
-        }
-        else if(!context.loading && !context.isPlaying){
-            return(
-                <Text>Reproducir</Text>
-            );
-        }
-    }
-
-    const renderAudioVolume = () => {
-        if(context.volume === 1){
-            return(
-                <Text>Silenciar</Text>
-            );
-        }
-        else if(context.volume === 0){
-            return(
-                <Text>Activar</Text>
-            );
-        }
-    }
 
     return (
-        <View style={styles.audioControlersContainer}>
+        <View style={styles.audioContainer}>
             <View style={styles.waveContainer}>
 
             </View>
 
-            <TouchableOpacity onPress={() => context.handleAudio()}>
-                {renderAudioMode()}    
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => context.handleVolume()}>
-                <Text>{renderAudioVolume()}</Text>    
-            </TouchableOpacity>
+            <AudioControls/>
 
         </View>
     );
@@ -57,10 +20,11 @@ const LinkAudio = () => {
 export { LinkAudio };
 
 const styles = StyleSheet.create({
-    audioControlersContainer: {
+    audioContainer: {
         width: "100%",
         flex: 1,
         alignItems: 'center',
+        gap: 10,
     },
     waveContainer: {
         width: 340,
