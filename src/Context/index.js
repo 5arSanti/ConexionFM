@@ -97,10 +97,6 @@ const MyProvider = ({children}) => {
         }
     }, [])
 
-    React.useEffect(() => {
-        handleAudio();
-    }, [])
-
     const handleAudio = async () => {
         try {
             if (sound){
