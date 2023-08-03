@@ -79,6 +79,8 @@ const MyProvider = ({children}) => {
                 setSound(sound);
                 setLoading(false);
                 await sound.playAsync();
+                setViewAnimation(true)
+                setAnimationPlay(true)
                 setIsPlaying(true);
             }
             catch(err){
@@ -97,14 +99,20 @@ const MyProvider = ({children}) => {
         }
     }, [])
 
+    //Activar audio
+    const [animationPlay, setAnimationPlay] = React.useState(false);
+    const [viewAnimation, setViewAnimation] = React.useState(false);
+
     const handleAudio = async () => {
         try {
             if (sound){
                 if(isPlaying){
                     await sound.pauseAsync()
+                    setViewAnimation(false)
                 }
                 else{
                     await sound.playAsync();
+                    setViewAnimation(true);
                 }
                 setIsPlaying(!isPlaying);
             }
@@ -126,10 +134,12 @@ const MyProvider = ({children}) => {
             if(volume === 1){
                 await sound.setVolumeAsync(0);
                 setVolume(0);
+                setViewAnimation(false);
             }
             else{
                 await sound.setVolumeAsync(1);
                 setVolume(1);
+                setViewAnimation(true);
             }
         }
         catch(err){
@@ -163,6 +173,10 @@ const MyProvider = ({children}) => {
                 setIsPlaying,
                 volume,
 
+                animationPlay,
+                setAnimationPlay,
+                viewAnimation,
+                setViewAnimation
             }}
         >
             {children}
