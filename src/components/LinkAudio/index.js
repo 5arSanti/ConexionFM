@@ -20,8 +20,6 @@ const LinkAudio = () => {
             color: "#EFA50B",
         },
     ]
-    //Sonando 155, 183
-    //
 
     return (
         <View style={styles.audioContainer}>
