@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import * as Font from "expo-font";
 import { Audio } from 'expo-av';
 
@@ -66,7 +66,7 @@ const MyProvider = ({children}) => {
 
 
     //Emisora
-    const [isPlaying, setIsPlaying] = React.useState(true);
+    const [isPlaying, setIsPlaying] = React.useState(false);
     const [sound, setSound] = React.useState(null);
 
     const audioUri = 'https://conexion.fm:8000/stream';
@@ -78,10 +78,12 @@ const MyProvider = ({children}) => {
                 const { sound } = await Audio.Sound.createAsync({ uri: audioUri});
                 setSound(sound);
                 setLoading(false);
+                
                 await sound.playAsync();
+
+                setIsPlaying(true);
                 setViewAnimation(true)
                 setAnimationPlay(true)
-                setIsPlaying(true);
             }
             catch(err){
                 setLoading(false);
@@ -149,7 +151,26 @@ const MyProvider = ({children}) => {
     }
 
     //Animacion
-    
+    const [loop, setLoop] = React.useState(false);
+    const lottieRef = useRef(null);
+
+    const playFullAnimation = () => {
+        setLoop(false)
+        lottieRef.current.play(0, 183);
+
+        setTimeout(() => {
+            setLoop(true)
+            lottieRef.current.play(155, 183);
+            setTimeout(() => {
+                setLoop(false);
+                lottieRef.current.play(155, 200);
+                setTimeout(() => {
+                    lottieRef.current.play(0, 183);
+                    playFullAnimation();
+                }, 2000)
+            }, 20000)
+        }, 7500);
+    };
 
 
     
@@ -179,7 +200,11 @@ const MyProvider = ({children}) => {
                 animationPlay,
                 setAnimationPlay,
                 viewAnimation,
-                setViewAnimation
+                setViewAnimation,
+
+                playFullAnimation,
+                loop,
+                lottieRef,
             }}
         >
             {children}

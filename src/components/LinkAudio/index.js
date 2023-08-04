@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { MyContext } from '../../Context';
 import { AudioControls } from '../AudioControls';
@@ -7,28 +7,12 @@ import LottieView from 'lottie-react-native';
 
 const LinkAudio = () => {
     const context = React.useContext(MyContext);
-
-    const lottieRef = useRef(null);
-    const [loop, setLoop] = useState(false);
-
-    const playFullAnimation = () => {
-        setLoop(false)
-        lottieRef.current.play(0, 183);
-
-        setTimeout(() => {
-            setLoop(true)
-            lottieRef.current.play(155, 183);
-            setTimeout(() => {
-                setLoop(false);
-                lottieRef.current.play(155, 200);
-                setTimeout(() => {
-                    lottieRef.current.play(0, 183);
-                    playFullAnimation();
-                }, 2000)
-            }, 20000)
-        }, 7500);
-    };
   
+    React.useEffect(() => {
+        if(context.isPlaying && context.lottieRef.current){
+            context.playFullAnimation();
+        }
+    }, [context.isPlaying, context.lottieRef.current]);
 
     const colorFilter = [
         {
@@ -41,34 +25,19 @@ const LinkAudio = () => {
 
     return (
         <View style={styles.audioContainer}>
-            <TouchableOpacity onPress={playFullAnimation}>
-                <Text>Boton</Text>
-            </TouchableOpacity>
 
             <View style={styles.waveContainer}>
-
-                <LottieView
-                    ref={lottieRef}
-                    source={require("../../../assets/animations/audio-animation.json")}
-                    autoPlay={false}
-                    loop={loop}
-                    style={{width: "100%", height: "100%"}}
-                    speed={0.8}
-                    colorFilters={colorFilter}
-                />
-                {/* {context.viewAnimation && 
+                {context.viewAnimation && 
                     <LottieView
-                        ref={lottieRef}
+                        ref={context.lottieRef}
                         source={require("../../../assets/animations/audio-animation.json")}
-                        // autoPlay={context.animationPlay}
                         autoPlay={false}
-                        loop={false}
+                        loop={context.loop}
                         style={{width: "100%", height: "100%"}}
                         speed={0.8}
                         colorFilters={colorFilter}
-                        onAnimationFinish={() => handleAnimationFinish()}
                     />
-                } */}
+                }
 
             </View>
 
