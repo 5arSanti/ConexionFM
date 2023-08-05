@@ -4,6 +4,7 @@ import { MyContext } from '../../Context';
 import { AudioControls } from '../AudioControls';
 
 import LottieView from 'lottie-react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const LinkAudio = () => {
     const context = React.useContext(MyContext);
@@ -20,7 +21,7 @@ const LinkAudio = () => {
 
     const renderAnimation = () => {
         if(context.screenView === 1){
-            if(context.isPlaying && context.viewAnimation){
+            if(context.isPlaying){
                 return(
                     <LottieView
                         ref={context.lottieRef}
@@ -72,9 +73,9 @@ const LinkAudio = () => {
     return (
         <View style={styles.audioContainer}>
 
-            <View style={styles.waveContainer}>
+            <LinearGradient style={styles.waveContainer} colors={["#434343", "#000000"]}>
                 {renderAnimation()}
-            </View>
+            </LinearGradient>
 
             <AudioControls/>
 

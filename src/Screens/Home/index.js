@@ -9,9 +9,12 @@ import { GradientContainer } from "../../components/GradientContainer";
 const Home = () => {
     const context = React.useContext(MyContext);
 
+    // gradientColor = ["#434343", "#000000"];
+    gradientColor = ["#FFFFFF", "#BABABA"];
+
     return(
         <GradientContainer 
-            colors={["#FFFFFF", "#BABABA"]}
+            colors={gradientColor}
             style={styles.homeContainer}
         >
             <ConexionLogo/>
