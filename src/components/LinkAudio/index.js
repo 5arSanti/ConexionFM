@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         gap: 10,
     },
     waveContainer: {
-        width: 340,
+        width: "100%",
         height: 340,
         backgroundColor: "#D9D9D9",
         borderRadius: 25,

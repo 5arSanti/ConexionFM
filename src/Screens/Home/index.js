@@ -1,16 +1,16 @@
 import { Image, StyleSheet, Text, View,} from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { LinkAudio } from "../../components/LinkAudio";
 import React from "react";
 import { MyContext } from "../../Context";
+import { GradientContainer } from "../../components/GradientContainer";
 
 const Home = () => {
     const context = React.useContext(MyContext);
 
     return(
-        <LinearGradient 
+        <GradientContainer 
             colors={["#FFFFFF", "#BABABA"]}
             style={styles.homeContainer}
         >
@@ -21,7 +21,7 @@ const Home = () => {
                 borderColor={"transparent"}
             />
             <LinkAudio/>
-        </LinearGradient>
+        </GradientContainer>
     );
 }
 export { Home };
