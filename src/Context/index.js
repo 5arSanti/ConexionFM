@@ -82,8 +82,12 @@ const MyProvider = ({children}) => {
                 await sound.playAsync();
 
                 setIsPlaying(true);
-                setViewAnimation(true)
-                setAnimationPlay(true)
+                if(screenView === 1){
+                    setViewAnimation(true);
+                }
+                else{
+                    setViewAnimation(false);
+                }
             }
             catch(err){
                 setLoading(false);
@@ -102,7 +106,6 @@ const MyProvider = ({children}) => {
     }, [])
 
     //Activar audio
-    const [animationPlay, setAnimationPlay] = React.useState(false);
     const [viewAnimation, setViewAnimation] = React.useState(false);
 
     const handleAudio = async () => {
@@ -110,11 +113,15 @@ const MyProvider = ({children}) => {
             if (sound){
                 if(isPlaying){
                     await sound.pauseAsync()
+                    // stopAnimation()
+                    setIsAnimating(false);
                     setViewAnimation(false)
                 }
                 else{
                     await sound.playAsync();
                     setViewAnimation(true);
+                    playFullAnimation()
+                    setIsAnimating(true);
                 }
                 setIsPlaying(!isPlaying);
             }
@@ -132,16 +139,20 @@ const MyProvider = ({children}) => {
 
 
     const handleVolume = async () => {
+        // stopAnimation();
         try {
             if(volume === 1){
                 await sound.setVolumeAsync(0);
                 setVolume(0);
                 setViewAnimation(false);
+                setIsAnimating(false);
             }
             else{
                 await sound.setVolumeAsync(1);
                 setVolume(1);
+                playFullAnimation()
                 setViewAnimation(true);
+                setIsAnimating(true);
             }
         }
         catch(err){
@@ -153,25 +164,62 @@ const MyProvider = ({children}) => {
     //Animacion
     const [loop, setLoop] = React.useState(false);
     const lottieRef = useRef(null);
+    const [animationTimeout, setAnimationTimeout] = React.useState(null);
+    const [isAnimating, setIsAnimating] = React.useState(false);
 
     const playFullAnimation = () => {
-        setLoop(false)
-        lottieRef.current.play(0, 183);
+        setIsAnimating(true);
+        setLoop(false);
+        lottieRef.current?.play(0, 183);
 
-        setTimeout(() => {
+        const timeout1 = setTimeout(() => {
+            if(!isAnimating) return;
             setLoop(true)
-            lottieRef.current.play(155, 183);
-            setTimeout(() => {
+            lottieRef.current?.play(155, 183);
+    
+            const timeout2 = setTimeout(() => {
+                if(!isAnimating) return;
                 setLoop(false);
-                lottieRef.current.play(155, 200);
-                setTimeout(() => {
-                    lottieRef.current.play(0, 183);
-                    playFullAnimation();
-                }, 2000)
-            }, 20000)
+                lottieRef.current?.play(155, 200);
+
+                const timeout3 = setTimeout(() => {
+                    if(!isAnimating) return;
+                    lottieRef.current?.play(0, 183);
+                    if(viewAnimation){
+                        playFullAnimation();
+                    }
+                }, 2000);
+                setAnimationTimeout(timeout3);
+                
+            }, 20000);
+            setAnimationTimeout(timeout2);
+            
         }, 7500);
+        setAnimationTimeout(timeout1);
     };
 
+    // const stopAnimation = () => {
+    //     clearTimeout(animationTimeout);
+    // }
+
+    React.useEffect(() => {
+        // Limpiar el timeout cuando el componente se desmonta
+        return () => {
+            if (animationTimeout) {
+                clearTimeout(animationTimeout);
+            }
+        };
+    }, [animationTimeout]);
+    
+    // React.useEffect(() => {
+    //     if (isPlaying) {
+    //         setShouldAnimate(true);
+    //         playFullAnimation();
+    //     } 
+    //     else {
+    //         setShouldAnimate(false);
+    //     }
+    // }, [isPlaying]);
 
     
 
@@ -197,12 +245,10 @@ const MyProvider = ({children}) => {
                 setIsPlaying,
                 volume,
 
-                animationPlay,
-                setAnimationPlay,
                 viewAnimation,
                 setViewAnimation,
 
-                playFullAnimation,
+                playFullAnimation,  
                 loop,
                 lottieRef,
             }}

@@ -7,12 +7,16 @@ import LottieView from 'lottie-react-native';
 
 const LinkAudio = () => {
     const context = React.useContext(MyContext);
+    const animationRef = React.useRef();
   
     React.useEffect(() => {
-        if(context.isPlaying && context.lottieRef.current){
+        if(context.isPlaying && context.viewAnimation){
             context.playFullAnimation();
         }
-    }, [context.isPlaying, context.lottieRef.current]);
+        else{
+            animationRef.current?.play(5, 24);
+        }
+    }, [context.isPlaying, context.viewAnimation, animationRef.current]);
 
     const colorFilter = [
         {
@@ -25,12 +29,23 @@ const LinkAudio = () => {
         <View style={styles.audioContainer}>
 
             <View style={styles.waveContainer}>
-                {context.viewAnimation && 
+        
+                {context.viewAnimation && context.screenView === 1 ? 
                     <LottieView
                         ref={context.lottieRef}
                         source={require("../../../assets/animations/audio-animation.json")}
                         autoPlay={false}
                         loop={context.loop}
+                        style={{width: "100%", height: "100%"}}
+                        speed={0.8}
+                        colorFilters={colorFilter}
+                    />
+                    :
+                    <LottieView
+                        ref={animationRef}
+                        source={require("../../../assets/animations/audio-animation.json")}
+                        autoPlay={true}
+                        loop={true}
                         style={{width: "100%", height: "100%"}}
                         speed={0.8}
                         colorFilters={colorFilter}
