@@ -18,10 +18,6 @@ export default function App() {
 const AppContext = () => {
     const context = React.useContext(MyContext);
 
-    // React.useEffect(() => {
-    //     context.stopAnimation()
-    // }, []);
-
     return(
         <View style={styles.container}>
             <StatusBar style='auto'/>
