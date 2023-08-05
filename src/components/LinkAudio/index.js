@@ -7,16 +7,60 @@ import LottieView from 'lottie-react-native';
 
 const LinkAudio = () => {
     const context = React.useContext(MyContext);
-    const animationRef = React.useRef();
+    const loadingRef = React.useRef();
   
     React.useEffect(() => {
         if(context.isPlaying && context.viewAnimation){
             context.playFullAnimation();
         }
-        else{
-            animationRef.current?.play(5, 24);
+        else {
+            loadingRef.current?.play(7, 24);
         }
-    }, [context.isPlaying, context.viewAnimation, animationRef.current]);
+    }, [context.isPlaying, context.viewAnimation, loadingRef.current]);
+
+    const renderAnimation = () => {
+        if(context.screenView === 1){
+            if(context.isPlaying && context.viewAnimation){
+                return(
+                    <LottieView
+                        ref={context.lottieRef}
+                        source={require("../../../assets/animations/audio-animation.json")}
+                        autoPlay={false}
+                        loop={context.loop}
+                        style={{width: "100%", height: "100%"}}
+                        speed={0.8}
+                        colorFilters={colorFilter}
+                    />
+                );
+            }
+            else if (context.loading){
+                return(
+                    <LottieView
+                        ref={loadingRef}
+                        source={require("../../../assets/animations/audio-animation.json")}
+                        autoPlay={true}
+                        loop={true}
+                        style={{width: "100%", height: "100%"}}
+                        speed={0.8}
+                        colorFilters={colorFilter}
+                    />
+                );
+            }
+            else {
+                return(
+                    <LottieView
+                        ref={loadingRef}
+                        source={require("../../../assets/animations/audio-animation.json")}
+                        autoPlay={false}
+                        loop={false}
+                        style={{width: "100%", height: "100%"}}
+                        speed={0}
+                        colorFilters={colorFilter}
+                    />
+                );
+            }
+        }
+    }
 
     const colorFilter = [
         {
@@ -29,29 +73,7 @@ const LinkAudio = () => {
         <View style={styles.audioContainer}>
 
             <View style={styles.waveContainer}>
-        
-                {context.viewAnimation && context.screenView === 1 ? 
-                    <LottieView
-                        ref={context.lottieRef}
-                        source={require("../../../assets/animations/audio-animation.json")}
-                        autoPlay={false}
-                        loop={context.loop}
-                        style={{width: "100%", height: "100%"}}
-                        speed={0.8}
-                        colorFilters={colorFilter}
-                    />
-                    :
-                    <LottieView
-                        ref={animationRef}
-                        source={require("../../../assets/animations/audio-animation.json")}
-                        autoPlay={true}
-                        loop={true}
-                        style={{width: "100%", height: "100%"}}
-                        speed={0.8}
-                        colorFilters={colorFilter}
-                    />
-                }
-
+                {renderAnimation()}
             </View>
 
             <AudioControls/>

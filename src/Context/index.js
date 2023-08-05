@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import * as Font from "expo-font";
 import { Audio } from 'expo-av';
 
@@ -113,15 +113,11 @@ const MyProvider = ({children}) => {
             if (sound){
                 if(isPlaying){
                     await sound.pauseAsync()
-                    // stopAnimation()
-                    setIsAnimating(false);
                     setViewAnimation(false)
                 }
                 else{
                     await sound.playAsync();
                     setViewAnimation(true);
-                    playFullAnimation()
-                    setIsAnimating(true);
                 }
                 setIsPlaying(!isPlaying);
             }
@@ -139,20 +135,18 @@ const MyProvider = ({children}) => {
 
 
     const handleVolume = async () => {
-        // stopAnimation();
         try {
             if(volume === 1){
                 await sound.setVolumeAsync(0);
                 setVolume(0);
                 setViewAnimation(false);
-                setIsAnimating(false);
+                
             }
             else{
                 await sound.setVolumeAsync(1);
                 setVolume(1);
-                playFullAnimation()
                 setViewAnimation(true);
-                setIsAnimating(true);
+                
             }
         }
         catch(err){
@@ -163,31 +157,30 @@ const MyProvider = ({children}) => {
 
     //Animacion
     const [loop, setLoop] = React.useState(false);
-    const lottieRef = useRef(null);
+    const lottieRef = React.useRef(null);
     const [animationTimeout, setAnimationTimeout] = React.useState(null);
-    const [isAnimating, setIsAnimating] = React.useState(false);
 
     const playFullAnimation = () => {
-        setIsAnimating(true);
         setLoop(false);
-        lottieRef.current?.play(0, 183);
+        lottieRef.current?.play(7, 183);
 
         const timeout1 = setTimeout(() => {
-            if(!isAnimating) return;
             setLoop(true)
             lottieRef.current?.play(155, 183);
     
             const timeout2 = setTimeout(() => {
-                if(!isAnimating) return;
                 setLoop(false);
                 lottieRef.current?.play(155, 200);
 
                 const timeout3 = setTimeout(() => {
-                    if(!isAnimating) return;
-                    lottieRef.current?.play(0, 183);
-                    if(viewAnimation){
-                        playFullAnimation();
-                    }
+                    lottieRef.current?.play(0, 7);
+                    const timeout4 = setTimeout(() => {
+                        if(viewAnimation){
+                            playFullAnimation();
+                        }
+                    }, 500);
+                    setAnimationTimeout(timeout4);
+
                 }, 2000);
                 setAnimationTimeout(timeout3);
                 
@@ -198,28 +191,13 @@ const MyProvider = ({children}) => {
         setAnimationTimeout(timeout1);
     };
 
-    // const stopAnimation = () => {
-    //     clearTimeout(animationTimeout);
-    // }
-
     React.useEffect(() => {
-        // Limpiar el timeout cuando el componente se desmonta
         return () => {
             if (animationTimeout) {
                 clearTimeout(animationTimeout);
             }
         };
     }, [animationTimeout]);
-    
-    // React.useEffect(() => {
-    //     if (isPlaying) {
-    //         setShouldAnimate(true);
-    //         playFullAnimation();
-    //     } 
-    //     else {
-    //         setShouldAnimate(false);
-    //     }
-    // }, [isPlaying]);
 
     
 
