@@ -46,7 +46,7 @@ const MyProvider = ({children}) => {
     }
 
     //Contenido Radial
-    const [radial, setRadial] = React.useState([]);
+    const [radial, setRadial] = React.useState(null);
     //Iconos
     const [icons, setIcons] = React.useState({});
     const iconsList = {
@@ -66,6 +66,7 @@ const MyProvider = ({children}) => {
     }
     React.useEffect(() => {
         setIcons(iconsList);
+
         const reversedRadialContentArray = radialContentArray.reverse();
         setRadial(reversedRadialContentArray);
     }, []);
@@ -205,7 +206,8 @@ const MyProvider = ({children}) => {
         };
     }, [animationTimeout]);
 
-    
+    //Corousel de Imagenes
+    const [activeCard, setActiveCard] = React.useState(null);
 
 
     return(
@@ -236,6 +238,9 @@ const MyProvider = ({children}) => {
                 playFullAnimation,  
                 loop,
                 lottieRef,
+
+                activeCard,
+                setActiveCard,
             }}
         >
             {children}

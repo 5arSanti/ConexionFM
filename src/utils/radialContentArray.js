@@ -1,4 +1,4 @@
-export const radialContentArray = [
+const radialContentArray = [
     {
         id: 1,
         name: "Mix Nights",
@@ -48,3 +48,5 @@ export const radialContentArray = [
         info: "El conteo de los éxitos musicales más sonados de la semana. Nuestro sistema crossover evidencia las canciones más solicitadas por nuestros oyentes a través de los diferentes portales y canales de emisión. Presenta: Dj. Sol",
     },
 ]
+
+export { radialContentArray };

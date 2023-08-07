@@ -65,7 +65,7 @@ const LinkAudio = () => {
 
     const colorFilter = [
         {
-            keypath: "bg circle Outlines",
+            keypath: "*",
             color: "#EFA50B",
         },
     ]

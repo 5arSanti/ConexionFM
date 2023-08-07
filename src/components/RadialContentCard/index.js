@@ -1,9 +1,9 @@
-import { Text } from "react-native";
+// import { Text } from "react-native";
 
-const RadialContentCard = (data) => {
-    return(
-        <Text>{data.data?.name}</Text>
-    );
-}
+// const RadialContentCard = (data) => {
+//     return(
+//         <Text>{data.data?.name}</Text>
+//     );
+// }
 
-export { RadialContentCard };
+// export { RadialContentCard };
