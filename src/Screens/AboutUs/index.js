@@ -8,12 +8,13 @@ const AboutUs = () => {
     return(
         <GradientContainer 
             colors={["#434343", "#000000"]}
+            padding={20}
         >
             <ConexionLogo/>
             <Title 
                 title={"Redes Sociales"} 
-                color={"#848484"}
-                borderColor={"transparent"}
+                color={"#FFF"}
+                borderColor={"white"}
             />
             
         </GradientContainer>

@@ -7,6 +7,8 @@ import { Home } from "../Screens/Home";
 import { RadioContent } from "../Screens/RadioContent";
 import { AboutUs } from "../Screens/AboutUs";
 
+import { radialContentArray } from "../utils/radialContentArray.js";
+
 export const MyContext = React.createContext();
 
 const MyProvider = ({children}) => {
@@ -43,6 +45,8 @@ const MyProvider = ({children}) => {
         setFontsLoaded(true); 
     }
 
+    //Contenido Radial
+    const [radial, setRadial] = React.useState([]);
     //Iconos
     const [icons, setIcons] = React.useState({});
     const iconsList = {
@@ -62,6 +66,8 @@ const MyProvider = ({children}) => {
     }
     React.useEffect(() => {
         setIcons(iconsList);
+        const reversedRadialContentArray = radialContentArray.reverse();
+        setRadial(reversedRadialContentArray);
     }, []);
 
 
@@ -216,6 +222,7 @@ const MyProvider = ({children}) => {
                 loadFonts,
 
                 icons,
+                radial,
 
                 handleAudio,
                 handleVolume,

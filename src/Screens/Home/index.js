@@ -15,7 +15,7 @@ const Home = () => {
     return(
         <GradientContainer 
             colors={gradientColor}
-            style={styles.homeContainer}
+            padding={20}
         >
             <ConexionLogo/>
             <Title 
@@ -28,18 +28,3 @@ const Home = () => {
     );
 }
 export { Home };
-
-const styles = StyleSheet.create({
-    homeContainer: {
-        width: "100%",
-        height: "100%",
-
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 20,
-
-        padding: 20,
-        paddingTop: 40,
-    }
-})

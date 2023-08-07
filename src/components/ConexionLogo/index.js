@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     image: {
         width: "70%", 
         height: 130, 
-        objectFit: "cover",
+        objectFit: "contain",
         marginBottom: 10,
     }
 })
