@@ -3,6 +3,7 @@ import { StyleSheet, Text,} from "react-native";
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { GradientContainer } from "../../components/GradientContainer";
+import { SocialMediaContainer } from "../../components/AboutUsScreen/SocialMediaContainer";
 
 const AboutUs = () => {
     return(
@@ -16,6 +17,8 @@ const AboutUs = () => {
                 color={"#FFF"}
                 borderColor={"white"}
             />
+
+            <SocialMediaContainer/>
             
         </GradientContainer>
     );

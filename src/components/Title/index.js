@@ -8,7 +8,7 @@ const Title = ({title, color, borderColor}) => {
 
             color: color, 
 
-            fontSize: 17,
+            fontSize: 18,
             fontFamily: "Questrial", 
 
             textAlign: "center",

@@ -8,6 +8,7 @@ import { RadioContent } from "../Screens/RadioContent";
 import { AboutUs } from "../Screens/AboutUs";
 
 import { radialContentArray } from "../utils/radialContentArray.js";
+import { socialMediaList } from "../utils/socialMediaList.js";
 
 export const MyContext = React.createContext();
 
@@ -46,7 +47,9 @@ const MyProvider = ({children}) => {
     }
 
     //Contenido Radial
-    const [radial, setRadial] = React.useState(null);
+    const [radial, setRadial] = React.useState([]);
+    //Social Media
+    const [socialMedia, setSocialMedia] = React.useState([]);
     //Iconos
     const [icons, setIcons] = React.useState({});
     const iconsList = {
@@ -69,6 +72,8 @@ const MyProvider = ({children}) => {
 
         const reversedRadialContentArray = radialContentArray.reverse();
         setRadial(reversedRadialContentArray);
+
+        setSocialMedia(socialMediaList)
     }, []);
 
 
@@ -207,7 +212,7 @@ const MyProvider = ({children}) => {
     }, [animationTimeout]);
 
     //Corousel de Imagenes
-    const [activeCard, setActiveCard] = React.useState(null);
+    const [activeCard, setActiveCard] = React.useState(0);
 
 
     return(
@@ -225,6 +230,7 @@ const MyProvider = ({children}) => {
 
                 icons,
                 radial,
+                socialMedia,
 
                 handleAudio,
                 handleVolume,

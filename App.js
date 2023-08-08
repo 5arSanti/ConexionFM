@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
 
-        backgroundColor: "#FFF",
+        backgroundColor: "transparent",
 
         borderRadius: 33,
         overflow: "hidden",

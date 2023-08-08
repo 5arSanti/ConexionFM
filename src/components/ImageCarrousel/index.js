@@ -12,7 +12,7 @@ const ImageCarrousel = () => {
 
     const renderImage = ({item}) => {
         return(
-            <Image source={item?.image} style={{width: "100%", height: "100%", objectFit: "contain"}}/>
+            <Image source={item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
         );
     }
 
@@ -25,11 +25,8 @@ const ImageCarrousel = () => {
                 sliderWidth={screenWidth}
                 itemWidth={screenWidth}
                 loop
-                autoplay
 
                 layout="default"
-
-                autoplayInterval={7000}
                 onSnapToItem={(index) => {context.setActiveCard(index)}}
             />
             <View style={styles.paginationContainerContainer}>
@@ -65,6 +62,8 @@ const styles = StyleSheet.create({
 
         justifyContent: "center",
         alignContent: "center",
+
+        backgroundColor: "transparent"
     },
     paginationContainerContainer: {
         width: "100%", 
