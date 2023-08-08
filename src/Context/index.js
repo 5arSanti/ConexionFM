@@ -107,6 +107,15 @@ const MyProvider = ({children}) => {
                 else{
                     setViewAnimation(false);
                 }
+
+                await Audio.setAudioModeAsync({
+                    allowsRecordingIOS: false,
+                    staysActiveInBackground: true,
+                    playsInSilentModeIOS: false,
+                    shouldDuckAndroid: true,
+
+                    playThroughEarpieceAndroid: false,
+                });
             }
             catch(err){
                 setLoading(false);
