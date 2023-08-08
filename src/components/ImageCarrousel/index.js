@@ -10,9 +10,9 @@ const ImageCarrousel = () => {
 
     const screenWidth = Dimensions.get("window").width - 40;
 
-    const renderImage = ({item}) => {
+    const renderImage = (item) => {
         return(
-            <Image source={item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
+            <Image source={item.item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
         );
     }
 
@@ -24,7 +24,7 @@ const ImageCarrousel = () => {
                 renderItem={renderImage}
                 sliderWidth={screenWidth}
                 itemWidth={screenWidth}
-                loop
+                // loop
 
                 layout="default"
                 onSnapToItem={(index) => {context.setActiveCard(index)}}

@@ -6,6 +6,8 @@ import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { MyProvider, MyContext } from './src/Context';
 import { NavigationButtons } from './src/components/NavigationButtons';
+import { SecondAudioControls } from './src/components/SecondAudioControls';
+import { WhatsAppButton } from './src/components/WhatsAppButton';
 
 export default function App() {
     return (
@@ -27,6 +29,8 @@ const AppContext = () => {
                 >
                     {context.RenderView()}
                 </ScrollView>
+                {context.screenView !== 1 && <WhatsAppButton/>}
+                {context.screenView !== 1 && <SecondAudioControls/>}
             </View>
 
             <NavigationButtons/>
@@ -57,7 +61,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
 
-        backgroundColor: "transparent",
+        position: "relative",
+
+        backgroundColor: "#242424",
 
         borderRadius: 33,
         overflow: "hidden",
@@ -69,6 +75,6 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         width: "100%",
-        height: "100%",
+        height: "80%",
     }
 });

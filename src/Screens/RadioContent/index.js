@@ -22,13 +22,21 @@ const RadioContent = () => {
             </View>
 
             <ImageCarrousel/>
+            <View style={styles.container}>
+                <Title 
+                    title={"Descubre más!"} 
+                    color={"#FFF"}
+                    borderColor={"white"}
+                />
+                <Image style={{flex: 1, width: "100%", objectFit: "contain", height: 400, marginBottom: 20,}} source={require("../../../assets/logos/ConexionFMv3.png")}/>
 
-            <Title 
+            </View>
+            {/* <Title 
                 title={"Descubre más!"} 
                 color={"#FFF"}
                 borderColor={"white"}
             />
-            <Image style={{flex: 1, width: "100%", objectFit: "contain", height: 400, marginBottom: 20,}} source={require("../../../assets/logos/ConexionFMv3.png")}/>
+            <Image style={{flex: 1, width: "100%", objectFit: "contain", height: 400, marginBottom: 20,}} source={require("../../../assets/logos/ConexionFMv3.png")}/> */}
         </GradientContainer>
     );
 }
@@ -42,7 +50,5 @@ const styles = StyleSheet.create({
         gap: 20,
 
         paddingHorizontal: 20,
-        paddingBottom: 20, 
-
     }
 })

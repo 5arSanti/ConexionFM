@@ -63,15 +63,22 @@ const MyProvider = ({children}) => {
         aboutActive: require("../../assets/nav-icons/about-icon2.png"),
 
         audioPlaying: require("../../assets/icons/app-icons/pause-black-icon.png"), //Sonando
+        audioPlayingWhite: require("../../assets/icons/app-icons/pause-white-icon.png"), //Sonando
+
         audioPause: require("../../assets/icons/app-icons/play-icon.png"), //Pausa
+        audioPauseWhite: require("../../assets/icons/app-icons/play-icon-white.png"), //Pausa
+        
         audioMute: require("../../assets/icons/app-icons/mute-icon.png"), //Mutear
+        audioMuteWhite: require("../../assets/icons/app-icons/mute-icon-white.png"), //Mutear
+        
         audioNoMute: require("../../assets/icons/app-icons/volume-icon.png"), //Desmutear
+        audioNoMuteWhite: require("../../assets/icons/app-icons/volume-icon-white.png"), //Desmutear
     }
+
     React.useEffect(() => {
         setIcons(iconsList);
 
-        const reversedRadialContentArray = radialContentArray.reverse();
-        setRadial(reversedRadialContentArray);
+        setRadial(radialContentArray);
 
         setSocialMedia(socialMediaList)
     }, []);

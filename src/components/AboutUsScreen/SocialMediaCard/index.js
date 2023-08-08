@@ -17,7 +17,7 @@ const SocialMediaCard = (data) => {
 
     return(
         <TouchableOpacity style={styles.socialMediaCardContainer} onPress={() => {handleOpenSocialMedia()}}>
-            <Image source={data.data?.image} style={styles.socialIcon}/>
+            <Image source={data.data?.image[0]} style={styles.socialIcon}/>
             <Text style={styles.socialMediaText}>{data.data?.name}</Text>
         </TouchableOpacity>
     );

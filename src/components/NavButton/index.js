@@ -11,7 +11,7 @@ const NavButton = ({onPress, title, iconName}) => {
             style={styles.button}
         >
             <Image source={iconName}
-                style={{width: 35, height: 35, objectFit: "cover"}}
+                style={{width: 35, height: 35, objectFit: "contain"}}
             />
             <Text 
                 style={{color: "white", fontSize: 14, fontFamily: "Questrial"}}>
