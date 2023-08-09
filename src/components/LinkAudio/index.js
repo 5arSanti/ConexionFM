@@ -17,7 +17,7 @@ const LinkAudio = () => {
         else {
             loadingRef.current?.play(7, 24);
         }
-    }, [context.isPlaying, context.viewAnimation, loadingRef.current]);
+    }, [context.isPlaying, loadingRef.current]);
 
     const renderAnimation = () => {
         if(context.screenView === 1){

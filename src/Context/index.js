@@ -53,6 +53,8 @@ const MyProvider = ({children}) => {
     //Iconos
     const [icons, setIcons] = React.useState({});
     const iconsList = {
+        // ConexionIcon: "../../assets/icon.png",
+
         home: require("../../assets/nav-icons/home-icon.png"),
         homeActive: require("../../assets/nav-icons/home-icon2.png"),
 
@@ -97,16 +99,8 @@ const MyProvider = ({children}) => {
                 const { sound } = await Audio.Sound.createAsync({ uri: audioUri});
                 setSound(sound);
                 setLoading(false);
-                
-                await sound.playAsync();
 
-                setIsPlaying(true);
-                if(screenView === 1){
-                    setViewAnimation(true);
-                }
-                else{
-                    setViewAnimation(false);
-                }
+                await sound.playAsync();
 
                 await Audio.setAudioModeAsync({
                     allowsRecordingIOS: false,
@@ -116,6 +110,14 @@ const MyProvider = ({children}) => {
 
                     playThroughEarpieceAndroid: false,
                 });
+
+                setIsPlaying(true);
+                if(screenView === 1){
+                    setViewAnimation(true);
+                }
+                else{
+                    setViewAnimation(false);
+                }
             }
             catch(err){
                 setLoading(false);
@@ -131,9 +133,10 @@ const MyProvider = ({children}) => {
                 sound.unloadAsync();
             }
         }
-    }, [])
+    }, []);
 
-    //Activar audio
+
+    // Activar audio
     const [viewAnimation, setViewAnimation] = React.useState(false);
 
     const handleAudio = async () => {
