@@ -19,7 +19,6 @@ export const setUpPlayer = async () => {
 
 export const addTrack = async () => {
     await TrackPlayer.add(playListData)
-    await TrackPlayer.setRepeatMode(RepeatMode.Queue);
 } 
 
 
@@ -33,7 +32,7 @@ const musicPlayerServices = async () => {
     })
 
     TrackPlayer.addEventListener(Event.RemoteStop, () => {
-        TrackPlayer.stop()
+        TrackPlayer.pause()
     })
 }
 

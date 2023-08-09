@@ -27,7 +27,7 @@ const AppContext = () => {
 
     return(
         <View style={styles.container}>
-            <StatusBar style='auto'/>
+            <StatusBar style='light'/>
             <View style={styles.screensContainer}>
                 <ScrollView contentContainerStyle={styles.scrollViewContainer} 
                     style={styles.scrollView}
