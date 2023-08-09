@@ -3,11 +3,14 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import TrackPlayer from 'react-native-track-player';
+
 
 import { MyProvider, MyContext } from './src/Context';
 import { NavigationButtons } from './src/components/NavigationButtons';
 import { SecondAudioControls } from './src/components/SecondAudioControls';
 import { WhatsAppButton } from './src/components/WhatsAppButton';
+import { musicPlayerServices } from './musicPlayerServices';
 
 export default function App() {
     return (
@@ -16,6 +19,8 @@ export default function App() {
         </MyProvider>
     );
 }
+
+TrackPlayer.registerPlaybackService(() => musicPlayerServices);
 
 const AppContext = () => {
     const context = React.useContext(MyContext);

@@ -2,6 +2,8 @@ import React from "react";
 import * as Font from "expo-font";
 import { Audio } from 'expo-av';
 
+import TrackPlayer, { Capability, State } from 'react-native-track-player';
+import { setUpPlayer, addTrack, musicPlayerServices } from "../../musicPlayerServices.js"
 
 import { Home } from "../Screens/Home";
 import { RadioContent } from "../Screens/RadioContent";
@@ -89,65 +91,105 @@ const MyProvider = ({children}) => {
     //Emisora
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [sound, setSound] = React.useState(null);
+    const [isPlayerReady, setIsPlayerReady] = React.useState(false);
 
     const audioUri = 'https://conexion.fm:8000/stream';
 
+    const setup = async () => {
+        setLoading(true);
+        try{
+            let isSetup = await setUpPlayer();
+            if(isSetup){
+                await addTrack()
+            }
+
+            setIsPlayerReady(isSetup);
+            setLoading(false);
+            
+
+            await TrackPlayer.play();
+            setIsPlaying(true);
+
+            if(screenView === 1){
+                setViewAnimation(true);
+            }
+            else{
+                setViewAnimation(false);
+            }
+        }
+        catch(err){
+            setLoading(false);
+            setError(true);
+            alert("Sucedio un error: ", err);
+            console.log(err);
+        }
+        
+    }
+
     React.useEffect(() => {
-        const loadAudio = async () => {
-            setLoading(true);
-            try {
-                const { sound } = await Audio.Sound.createAsync({ uri: audioUri});
-                setSound(sound);
-                setLoading(false);
+        setup();
+    }, [])
 
-                await sound.playAsync();
+    // React.useEffect(() => {
+    //     const loadAudio = async () => {
+    //         setLoading(true);
+    //         try {
+    //             const { sound } = await Audio.Sound.createAsync({ uri: audioUri});
+    //             setSound(sound);
+    //             setLoading(false);
 
-                await Audio.setAudioModeAsync({
-                    allowsRecordingIOS: false,
-                    staysActiveInBackground: true,
-                    playsInSilentModeIOS: false,
-                    shouldDuckAndroid: true,
+    //             // await sound.playAsync();
 
-                    playThroughEarpieceAndroid: false,
-                });
+    //             await Audio.setAudioModeAsync({
+    //                 allowsRecordingIOS: false,
+    //                 staysActiveInBackground: true,
+    //                 playsInSilentModeIOS: false,
+    //                 shouldDuckAndroid: true,
 
-                setIsPlaying(true);
-                if(screenView === 1){
-                    setViewAnimation(true);
-                }
-                else{
-                    setViewAnimation(false);
-                }
-            }
-            catch(err){
-                setLoading(false);
-                setError(true);
-                alert("Sucedio un error: ", err);
-                console.log(err);
-            }
-        }
-        loadAudio();
+    //                 playThroughEarpieceAndroid: false,
+    //             });
 
-        return () => {
-            if(sound){
-                sound.unloadAsync();
-            }
-        }
-    }, []);
+    //             setIsPlaying(true);
+    //             if(screenView === 1){
+    //                 setViewAnimation(true);
+    //             }
+    //             else{
+    //                 setViewAnimation(false);
+    //             }
+    //         }
+    //         catch(err){
+    //             setLoading(false);
+    //             setError(true);
+    //             alert("Sucedio un error: ", err);
+    //             console.log(err);
+    //         }
+    //     }
+    //     loadAudio();
+
+    //     return () => {
+    //         if(sound){
+    //             sound.unloadAsync();
+    //         }
+    //     }
+    // }, []);
 
 
     // Activar audio
+    
     const [viewAnimation, setViewAnimation] = React.useState(false);
 
     const handleAudio = async () => {
+        const currentTrack = await TrackPlayer.getCurrentTrack();
         try {
-            if (sound){
+            if (currentTrack !== null){
                 if(isPlaying){
-                    await sound.pauseAsync()
+                    // await sound.pauseAsync()
+                    await TrackPlayer.pause();
                     setViewAnimation(false)
                 }
                 else{
-                    await sound.playAsync();
+                    // await sound.playAsync();
+                    await TrackPlayer.play();
                     setViewAnimation(true);
                 }
                 setIsPlaying(!isPlaying);
@@ -168,16 +210,15 @@ const MyProvider = ({children}) => {
     const handleVolume = async () => {
         try {
             if(volume === 1){
-                await sound.setVolumeAsync(0);
+                // await sound.setVolumeAsync(0);
+                await TrackPlayer.setVolume(0);
                 setVolume(0);
-                setViewAnimation(false);
                 
             }
             else{
-                await sound.setVolumeAsync(1);
-                setVolume(1);
-                setViewAnimation(true);
-                
+                // await sound.setVolumeAsync(1);
+                await TrackPlayer.setVolume(1);
+                setVolume(1);                
             }
         }
         catch(err){
