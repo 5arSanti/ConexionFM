@@ -2,8 +2,8 @@ import React from "react";
 import * as Font from "expo-font";
 import { Audio } from 'expo-av';
 
-import TrackPlayer, { Capability, State } from 'react-native-track-player';
-import { setUpPlayer, addTrack, musicPlayerServices } from "../../musicPlayerServices.js"
+import TrackPlayer, { AppKilledPlaybackBehavior, Capability, State } from 'react-native-track-player';
+import { setUpPlayer, addTrack } from "../../musicPlayerServices.js"
 
 import { Home } from "../Screens/Home";
 import { RadioContent } from "../Screens/RadioContent";
@@ -102,8 +102,28 @@ const MyProvider = ({children}) => {
             if(isSetup){
                 await addTrack()
             }
-
             setIsPlayerReady(isSetup);
+
+            await TrackPlayer.updateOptions({
+                android: {
+                    AppKilledPlaybackBehavior: AppKilledPlaybackBehavior.PausePlayback,
+                }, 
+                capabilities: [
+                    Capability.Play,
+                    Capability.Pause,
+                    Capability.Stop,
+                    Capability.SkipToNext,
+                ],
+                compactCapabilities: [
+                    Capability.Play,
+                    Capability.Pause,
+                ],
+                notificationCapabilities: [
+                    Capability.Play,
+                    Capability.Pause,
+                    Capability.Stop,
+                ],
+              });
             setLoading(false);
             
 
@@ -130,50 +150,14 @@ const MyProvider = ({children}) => {
         setup();
     }, [])
 
-    // React.useEffect(() => {
-    //     const loadAudio = async () => {
-    //         setLoading(true);
-    //         try {
-    //             const { sound } = await Audio.Sound.createAsync({ uri: audioUri});
-    //             setSound(sound);
-    //             setLoading(false);
+    React.useEffect(() => {
+        const subscribeToState = async () => {
+            const state = await TrackPlayer.getState();
+            setIsPlaying(state === TrackPlayer.getState());
+        };
 
-    //             // await sound.playAsync();
-
-    //             await Audio.setAudioModeAsync({
-    //                 allowsRecordingIOS: false,
-    //                 staysActiveInBackground: true,
-    //                 playsInSilentModeIOS: false,
-    //                 shouldDuckAndroid: true,
-
-    //                 playThroughEarpieceAndroid: false,
-    //             });
-
-    //             setIsPlaying(true);
-    //             if(screenView === 1){
-    //                 setViewAnimation(true);
-    //             }
-    //             else{
-    //                 setViewAnimation(false);
-    //             }
-    //         }
-    //         catch(err){
-    //             setLoading(false);
-    //             setError(true);
-    //             alert("Sucedio un error: ", err);
-    //             console.log(err);
-    //         }
-    //     }
-    //     loadAudio();
-
-    //     return () => {
-    //         if(sound){
-    //             sound.unloadAsync();
-    //         }
-    //     }
-    // }, []);
-
-
+        subscribeToState();
+    }, [])
     // Activar audio
     
     const [viewAnimation, setViewAnimation] = React.useState(false);
@@ -183,12 +167,10 @@ const MyProvider = ({children}) => {
         try {
             if (currentTrack !== null){
                 if(isPlaying){
-                    // await sound.pauseAsync()
                     await TrackPlayer.pause();
                     setViewAnimation(false)
                 }
-                else{
-                    // await sound.playAsync();
+                else {
                     await TrackPlayer.play();
                     setViewAnimation(true);
                 }
