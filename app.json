@@ -1,11 +1,15 @@
 {
   "expo": {
-    "name": "conexionfm",
+    "name": "Conexión.FM",
     "slug": "conexionfm",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/Logo-512px.png",
     "userInterfaceStyle": "dark",
+    "primaryColor": "#EFA50B",
+    "notification": {
+      "icon": "./assets/Logo-512px.png"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -25,7 +29,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/Logo-512px.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "transparent"
       },
       "package": "com.conexionfm.conexionfmapp"
     },

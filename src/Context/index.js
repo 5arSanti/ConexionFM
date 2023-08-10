@@ -102,11 +102,11 @@ const MyProvider = ({children}) => {
 
             await TrackPlayer.updateOptions({
                 android: {
-                    AppKilledPlaybackBehavior: AppKilledPlaybackBehavior.PausePlayback,
+                    AppKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
                 }, 
                 capabilities: [
                     Capability.Play,
-                    Capability.Pause,
+                    Capability.Pause,   
                     Capability.Stop,
                 ],
                 compactCapabilities: [
@@ -121,10 +121,9 @@ const MyProvider = ({children}) => {
                 ],
                 icon: require("../../assets/Logo-512px.png"),
               });
-            setLoading(false);
-            
 
             await TrackPlayer.play();
+            setLoading(false);
             setIsPlaying(true);
 
             if(screenView === 1){
