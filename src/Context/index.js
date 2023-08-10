@@ -1,6 +1,5 @@
 import React from "react";
 import * as Font from "expo-font";
-import { Audio } from 'expo-av';
 
 import TrackPlayer, { AppKilledPlaybackBehavior, Capability, State } from 'react-native-track-player';
 import { setUpPlayer, addTrack } from "../../musicPlayerServices.js"
@@ -90,10 +89,7 @@ const MyProvider = ({children}) => {
 
     //Emisora
     const [isPlaying, setIsPlaying] = React.useState(false);
-    const [sound, setSound] = React.useState(null);
     const [isPlayerReady, setIsPlayerReady] = React.useState(false);
-
-    const audioUri = 'https://conexion.fm:8000/stream';
 
     const setup = async () => {
         setLoading(true);
@@ -112,17 +108,18 @@ const MyProvider = ({children}) => {
                     Capability.Play,
                     Capability.Pause,
                     Capability.Stop,
-                    Capability.SkipToNext,
                 ],
                 compactCapabilities: [
                     Capability.Play,
                     Capability.Pause,
+                    Capability.Stop,
                 ],
                 notificationCapabilities: [
                     Capability.Play,
                     Capability.Pause,
                     Capability.Stop,
                 ],
+                icon: require("../../assets/Logo-512px.png"),
               });
             setLoading(false);
             
@@ -157,9 +154,14 @@ const MyProvider = ({children}) => {
         };
 
         subscribeToState();
+
+        const stateListener = TrackPlayer.addEventListener('playback-state', async () => {
+            const state = await TrackPlayer.getState();
+            setIsPlaying(state === State.Playing);
+        });
     }, [])
+
     // Activar audio
-    
     const [viewAnimation, setViewAnimation] = React.useState(false);
 
     const handleAudio = async () => {
@@ -187,7 +189,6 @@ const MyProvider = ({children}) => {
 
     //Volumen
     const [ volume, setVolume ] = React.useState(1);
-
 
     const handleVolume = async () => {
         try {
@@ -255,7 +256,6 @@ const MyProvider = ({children}) => {
 
     //Corousel de Imagenes
     const [activeCard, setActiveCard] = React.useState(0);
-
 
     return(
         <MyContext.Provider

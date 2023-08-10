@@ -8,6 +8,6 @@ export const playListData: Track[] = [
         url: audioUri,
         title: 'Señal en Vivo',
         artist: 'Conexión.FM',
-        artwork: '../../assets/icon.png',
+        // artwork: '../../assets/icon.png',
     },
 ]
