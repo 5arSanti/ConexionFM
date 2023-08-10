@@ -1,7 +1,6 @@
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { MyContext } from "../../Context";
 import React from "react";
-import { RadialContentCard } from "../RadialContentCard";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 
 const ImageCarrousel = () => {

@@ -1,5 +1,4 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet } from "react-native";
 
 const GradientContainer = ({children, colors, padding}) => {
     return(

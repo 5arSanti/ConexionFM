@@ -14,6 +14,7 @@ const WhatsAppButton = () => {
         }
         else {
             alert("No se pudo abrir");
+            context.setError(true);
         }
     }
 

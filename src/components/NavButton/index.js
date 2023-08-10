@@ -26,7 +26,6 @@ export { NavButton };
 const styles = StyleSheet.create({
     button: {
         width: 85,
-        // height: 78,
         height: "100%",
 
         backgroundColor: "#464646",

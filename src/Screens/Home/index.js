@@ -1,4 +1,3 @@
-import { Image, StyleSheet, Text, View,} from "react-native";
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { LinkAudio } from "../../components/LinkAudio";

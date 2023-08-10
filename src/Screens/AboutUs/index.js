@@ -1,5 +1,3 @@
-import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, Text,} from "react-native";
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { GradientContainer } from "../../components/GradientContainer";

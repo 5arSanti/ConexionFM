@@ -1,4 +1,4 @@
-import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Linking, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const SocialMediaCard = (data) => {
 
@@ -10,7 +10,7 @@ const SocialMediaCard = (data) => {
             await Linking.openURL(url);
         }
         else {
-            alert("No se pudo abrir");
+            alert("Ocurrió un error");
         }
     }
 

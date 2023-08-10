@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import TrackPlayer from 'react-native-track-player';
 
