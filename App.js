@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import TrackPlayer from 'react-native-track-player';
 
@@ -17,20 +17,21 @@ import { musicPlayerServices } from './musicPlayerServices';
 import { Home } from './src/Screens/Home';
 import { RadioContent } from './src/Screens/RadioContent';
 import { AboutUs } from './src/Screens/AboutUs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 TrackPlayer.registerPlaybackService(() => musicPlayerServices);
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator(); 
 
-const MyTabs = () => {
+const MyStacks = () => {
     return(
-        <NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen name="Home" component={Home} />
-                <Tab.Screen name="Radio" component={RadioContent} />
-                <Tab.Screen name="About" component={AboutUs} />
-            </Tab.Navigator>
-      </NavigationContainer>
+        <Stack.Navigator
+            backBehavior='firstRoute'
+        >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="RadioContent" component={RadioContent} />
+            <Stack.Screen name="AboutUs" component={AboutUs} />
+        </Stack.Navigator>
     );
 }
 
@@ -40,27 +41,36 @@ const AppContext = () => {
     return(
         <View style={styles.container}>
             <StatusBar style='light'/>
+
             <View style={styles.screensContainer}>
-                <ScrollView contentContainerStyle={styles.scrollViewContainer} 
-                    style={styles.scrollView}
-                >
-                    <MyTabs/>
-                    {/* {context.RenderView()} */}
-                </ScrollView>
+
+                <MyStacks/>
                 {context.screenView !== 1 && <WhatsAppButton/>}
                 {context.screenView !== 1 && <SecondAudioControls/>}
             </View>
 
             <NavigationButtons/>
         </View>
+
+    );
+}
+const Temporal = () => {
+    return(
+        <ScrollView contentContainerStyle={styles.scrollViewContainer} 
+            style={styles.scrollView}
+        >
+            {/* {context.RenderView()} */}
+        </ScrollView>
     );
 }
 
 export default function App() {
     return (
-        <MyProvider>
-            <AppContext/>
-        </MyProvider>
+        <NavigationContainer>
+            <MyProvider>
+                <AppContext/>
+            </MyProvider>
+        </NavigationContainer>
     );
 }
 
@@ -84,13 +94,12 @@ const styles = StyleSheet.create({
         width: "100%",
         flex: 1,
         height: "85%",
-
-        alignItems: "center",
+        
         justifyContent: "center",
 
         position: "relative",
 
-        backgroundColor: "#242424",
+        backgroundColor: "transparent",
 
         borderRadius: 33,
         overflow: "hidden",

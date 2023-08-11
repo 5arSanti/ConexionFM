@@ -11,6 +11,7 @@ import { AboutUs } from "../Screens/AboutUs";
 import { radialContentArray } from "../utils/radialContentArray.js";
 import { socialMediaList } from "../utils/socialMediaList.js";
 import { RadialInfoCard } from "../components/RadialInfoCard/index.js";
+import { useNavigation } from "@react-navigation/native";
 
 export const MyContext = React.createContext();
 
@@ -21,6 +22,8 @@ const MyProvider = ({children}) => {
 
 
     //Routes
+    const navigation = useNavigation();
+
     const [screenView, setScreenView] = React.useState(1);
 
     const RenderView = () => {
@@ -264,6 +267,7 @@ const MyProvider = ({children}) => {
                 loading,
                 error,
 
+                navigation,
                 screenView,
                 setScreenView,
                 RenderView,
