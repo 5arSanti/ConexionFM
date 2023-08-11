@@ -1,4 +1,6 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { MyContext } from "../../Context";
 import React from "react";
 import Carousel, { Pagination } from "react-native-snap-carousel";
@@ -10,8 +12,16 @@ const ImageCarrousel = () => {
     const screenWidth = Dimensions.get("window").width - 40;
 
     const renderImage = (item) => {
+        const navigation = useNavigation();
+
+        const handleImagePress = () => {
+            navigation.navigate('DetalleImagen', { item: item.item });
+        };
+
         return(
-            <Image source={item.item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
+            <TouchableOpacity onPress={handleImagePress}>
+                <Image source={item.item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
+            </TouchableOpacity>
         );
     }
 

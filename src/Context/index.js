@@ -10,6 +10,7 @@ import { AboutUs } from "../Screens/AboutUs";
 
 import { radialContentArray } from "../utils/radialContentArray.js";
 import { socialMediaList } from "../utils/socialMediaList.js";
+import { EmisionCard } from "../components/RadialInfoCard/EmisionCard/index.js";
 
 export const MyContext = React.createContext();
 
@@ -27,6 +28,7 @@ const MyProvider = ({children}) => {
             case 1: return(<Home/>);break;
             case 2: return(<RadioContent/>);break;
             case 3: return(<AboutUs/>);break;
+            // case 4: return(<EmisionCard/>);break;
         }
     }
 
