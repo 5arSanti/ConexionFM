@@ -44,8 +44,8 @@ const AppContext = () => {
                 <ScrollView contentContainerStyle={styles.scrollViewContainer} 
                     style={styles.scrollView}
                 >
-                    {/* <MyTabs/> */}
-                    {context.RenderView()}
+                    <MyTabs/>
+                    {/* {context.RenderView()} */}
                 </ScrollView>
                 {context.screenView !== 1 && <WhatsAppButton/>}
                 {context.screenView !== 1 && <SecondAudioControls/>}
