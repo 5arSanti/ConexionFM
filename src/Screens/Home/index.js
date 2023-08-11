@@ -4,6 +4,7 @@ import { LinkAudio } from "../../components/LinkAudio";
 import React from "react";
 import { MyContext } from "../../Context";
 import { GradientContainer } from "../../components/GradientContainer";
+import { ScrollViewContainer } from "../../components/ScrollViewContainer";
 
 const Home = () => {
     const context = React.useContext(MyContext);
@@ -12,18 +13,20 @@ const Home = () => {
     gradientColor = ["#FFFFFF", "#BABABA"];
 
     return(
-        <GradientContainer 
-            colors={gradientColor}
-            padding={20}
-        >
-            <ConexionLogo/>
-            <Title 
-                title={"Exclusivamente para tí."} 
-                color={"#848484"}
-                borderColor={"transparent"}
-            />
-            <LinkAudio/>
-        </GradientContainer>
+        <ScrollViewContainer>
+            <GradientContainer 
+                colors={gradientColor}
+                padding={20}
+            >
+                <ConexionLogo/>
+                <Title 
+                    title={"Exclusivamente para tí."} 
+                    color={"#848484"}
+                    borderColor={"transparent"}
+                />
+                <LinkAudio/>
+            </GradientContainer>
+        </ScrollViewContainer>
     );
 }
 export { Home };

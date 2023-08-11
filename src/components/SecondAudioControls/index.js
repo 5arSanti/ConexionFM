@@ -68,9 +68,9 @@ export { SecondAudioControls };
 const styles = StyleSheet.create({
     audioControlsContainer: {
         width: "100%",
-        height: "20%",
+        height: 70,
 
-        flex: 1,
+
         flexDirection: "row",
         gap: 20,
 

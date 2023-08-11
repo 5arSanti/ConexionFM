@@ -43,7 +43,6 @@ const AppContext = () => {
             <StatusBar style='light'/>
 
             <View style={styles.screensContainer}>
-
                 <MyStacks/>
                 {context.screenView !== 1 && <WhatsAppButton/>}
                 {context.screenView !== 1 && <SecondAudioControls/>}
@@ -93,8 +92,8 @@ const styles = StyleSheet.create({
     screensContainer: {
         width: "100%",
         flex: 1,
-        height: "85%",
-        
+        height: "100%",
+
         justifyContent: "center",
 
         position: "relative",
