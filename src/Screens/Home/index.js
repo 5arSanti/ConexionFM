@@ -5,9 +5,18 @@ import React from "react";
 import { MyContext } from "../../Context";
 import { GradientContainer } from "../../components/GradientContainer";
 import { ScrollViewContainer } from "../../components/ScrollViewContainer";
+import { useIsFocused } from "@react-navigation/native";
 
 const Home = () => {
     const context = React.useContext(MyContext);
+
+    const isFocused = useIsFocused();
+
+    React.useEffect(() => {
+        if (isFocused) {
+            context.setScreenView(1);
+        }
+    }, [isFocused]);
 
     // gradientColor = ["#434343", "#000000"];
     gradientColor = ["#FFFFFF", "#BABABA"];

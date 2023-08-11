@@ -1,11 +1,24 @@
+import React from "react";
 import { Image, StyleSheet, View,} from "react-native";
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { GradientContainer } from "../../components/GradientContainer";
 import { ImageCarrousel } from "../../components/ImageCarrousel";
 import { ScrollViewContainer } from "../../components/ScrollViewContainer";
+import { useIsFocused } from "@react-navigation/native";
+import { MyContext } from "../../Context";
 
 const RadioContent = () => {
+    const context = React.useContext(MyContext);
+
+    const isFocused = useIsFocused();
+
+    React.useEffect(() => {
+        if (isFocused) {
+            context.setScreenView(2);
+        }
+    }, [isFocused]);
+
     return(
         <ScrollViewContainer>
             <GradientContainer 

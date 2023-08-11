@@ -23,17 +23,7 @@ const MyProvider = ({children}) => {
 
     //Routes
     const navigation = useNavigation();
-
     const [screenView, setScreenView] = React.useState(1);
-
-    const RenderView = () => {
-        switch (screenView) {
-            case 1: return(<Home/>);break;
-            case 2: return(<RadioContent/>);break;
-            case 3: return(<AboutUs/>);break;
-            // case 4: return(<RadialInfoCard/>);break;
-        }
-    }
 
     //Fuentes
     const [fontsLoaded, setFontsLoaded] = React.useState(false);
@@ -128,8 +118,8 @@ const MyProvider = ({children}) => {
               });
 
             await TrackPlayer.play();
-            setLoading(false);
             setIsPlaying(true);
+            setLoading(false);
 
             if(screenView === 1){
                 setViewAnimation(true);
@@ -259,7 +249,7 @@ const MyProvider = ({children}) => {
     }, [animationTimeout]);
 
     //Corousel de Imagenes
-    const [activeCard, setActiveCard] = React.useState(0);
+    const [activeCard, setActiveCard] = React.useState(1);
 
     return(
         <MyContext.Provider
@@ -270,13 +260,12 @@ const MyProvider = ({children}) => {
                 navigation,
                 screenView,
                 setScreenView,
-                RenderView,
 
                 fontsLoaded,
                 loadFonts,
 
                 icons,
-                radial,
+                radial, 
                 socialMedia,
 
                 handleAudio,

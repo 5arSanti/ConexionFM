@@ -6,7 +6,6 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { MyProvider, MyContext } from './src/Context';
 import { NavigationButtons } from './src/components/NavigationButtons';
@@ -27,6 +26,9 @@ const MyStacks = () => {
     return(
         <Stack.Navigator
             backBehavior='firstRoute'
+            screenOptions={{
+                headerShown: false,
+            }}
         >
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="RadioContent" component={RadioContent} />
@@ -37,7 +39,7 @@ const MyStacks = () => {
 
 const AppContext = () => {
     const context = React.useContext(MyContext);
-
+    
     return(
         <View style={styles.container}>
             <StatusBar style='light'/>
@@ -53,15 +55,7 @@ const AppContext = () => {
 
     );
 }
-const Temporal = () => {
-    return(
-        <ScrollView contentContainerStyle={styles.scrollViewContainer} 
-            style={styles.scrollView}
-        >
-            {/* {context.RenderView()} */}
-        </ScrollView>
-    );
-}
+
 
 export default function App() {
     return (
