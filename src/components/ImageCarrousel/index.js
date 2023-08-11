@@ -4,6 +4,7 @@ import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from "react-nat
 import { MyContext } from "../../Context";
 import React from "react";
 import Carousel, { Pagination } from "react-native-snap-carousel";
+import { RadialInfoCard } from '../RadialInfoCard';
 
 const ImageCarrousel = () => {
     const context = React.useContext(MyContext);
@@ -12,14 +13,8 @@ const ImageCarrousel = () => {
     const screenWidth = Dimensions.get("window").width - 40;
 
     const renderImage = (item) => {
-        const navigation = useNavigation();
-
-        const handleImagePress = () => {
-            navigation.navigate('DetalleImagen', { item: item.item });
-        };
-
         return(
-            <TouchableOpacity onPress={handleImagePress}>
+            <TouchableOpacity>
                 <Image source={item.item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
             </TouchableOpacity>
         );
