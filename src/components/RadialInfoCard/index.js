@@ -37,14 +37,14 @@ const RadialInfoCard = ({route}) => {
                     </View>
                     
 
-                    <View style={{paddingHorizontal: 20, gap: 20}}>
-                        <Title title={"Sobre el Programa"} color={"#FFF"} borderColor={"#FFF"}/>
+                    <View style={{paddingHorizontal: 20, gap: 20, alignItems: "center"}}>
+                        <Title title={"Sobre el Programa"} color={"#FFF"} borderColor={"#EFA50B"}/>
                         <Text style={styles.radialInfoText}>{data.info}</Text>
                     </View>
 
-                    <View style={{paddingHorizontal: 20, marginTop: 30, marginBottom: 20, gap: 20}}>
+                    <View style={{paddingHorizontal: 20, marginTop: 30, marginBottom: 20, gap: 20, alignItems: "center"}}>
 
-                        <Title title={"Emisión"} color={"#FFF"} borderColor={"#FFF"}/>
+                        <Title title={"Dias de emisión"} color={"#FFF"} borderColor={"#EFA50B"}/>
                         <View style={styles.emisionDaysGrid}>
                             {data.emision.map((data) => (
                                 <EmisionCard

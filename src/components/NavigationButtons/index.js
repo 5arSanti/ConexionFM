@@ -12,7 +12,7 @@ const NavigationButtons = () => {
     const context = React.useContext(MyContext);
 
     let color;
-    const size = 45;
+    const size = 40;
 
     const handleIcon = (viewNumber) => {
         if(context.screenView === viewNumber){
