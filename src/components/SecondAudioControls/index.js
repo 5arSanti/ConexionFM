@@ -2,6 +2,7 @@ import React from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { MyContext } from "../../Context";
 
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const SecondAudioControls = () => {
     const context = React.useContext(MyContext);
@@ -30,12 +31,12 @@ const SecondAudioControls = () => {
     const renderAudioMode = () => {
         if(!context.loading && context.isPlaying){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioPlayingWhite}/>
+                <FontAwesome5 name="pause" size={25} color="#FFF" />
             );
         }
         else if(!context.loading && !context.isPlaying){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioPauseWhite}/>
+                <FontAwesome5 name="play" size={25} color="#FFF" />
             );
         }
     }
@@ -43,12 +44,12 @@ const SecondAudioControls = () => {
     const renderAudioVolume = () => {
         if(context.volume === 1){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioNoMuteWhite}/>
+                <FontAwesome5 name="volume-up" size={22} color="#FFF" />
             );
         }
         else if(context.volume === 0){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioMuteWhite}/>
+                <FontAwesome5 name="volume-mute" size={25} color="#FFF"/>
             );
         }
     }
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         display: "flex",
         flexDirection: "row",
-        gap: 20,
+        gap: 15,
         width: "auto",
     },
     buttonAudio: {
@@ -89,13 +90,7 @@ const styles = StyleSheet.create({
         width: "auto",
 
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    audioImage: {
-        height: "100%",
-        width: 25,
-        objectFit: "contain",
+        alignItems: "center",
     },
     audioControlsText: {
         color: "#FFF",

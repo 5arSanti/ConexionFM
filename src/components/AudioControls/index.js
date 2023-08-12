@@ -1,5 +1,7 @@
 import React from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FontAwesome5 } from '@expo/vector-icons';
+
+import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { MyContext } from "../../Context";
 
@@ -31,12 +33,12 @@ const AudioControls = () => {
     const renderAudioMode = () => {
         if(!context.loading && context.isPlaying){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioPlaying}/>
+                <FontAwesome5 name="pause" size={40} color="black" />
             );
         }
         else if(!context.loading && !context.isPlaying){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioPause}/>
+                <FontAwesome5 name="play" size={40} color="#b70006" />
             );
         }
     }
@@ -44,12 +46,12 @@ const AudioControls = () => {
     const renderAudioVolume = () => {
         if(context.volume === 1){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioNoMute}/>
+                <FontAwesome5 name="volume-up" size={40} color="black" />
             );
         }
         else if(context.volume === 0){
             return(
-                <Image style={styles.audioImage} source={context.icons.audioMute}/>
+                <FontAwesome5 name="volume-mute" size={40} color="#b70006"/>
             );
         }
     }
