@@ -21,29 +21,17 @@ const NavigationButtons = () => {
         <View style={styles.buttonsContainer}>
             <NavButton
                 title={"Inicio"}
-                onPress={() => {
-                    context.setScreenView(1)
-                    context.navigation.navigate("Home")
-                    console.log("HOme")
-                }}
+                onPress={() => {context.navigation.navigate("Home")}}
                 iconName={handleIcon(context.icons.home, context.icons.homeActive, 1)}
             />
             <NavButton
                 title={"Contenido"}
-                onPress={() => {
-                    context.setScreenView(2)
-                    context.navigation.navigate("RadioContent")
-                    console.log("RadioContent")
-                }}
+                onPress={() => {context.navigation.navigate("RadioContent")}}
                 iconName={handleIcon(context.icons.radio, context.icons.radioActive, 2)}
             />
             <NavButton
                 title={"Contacto"}
-                onPress={() => {
-                    context.setScreenView(3)
-                    context.navigation.navigate("AboutUs")
-                    console.log("AboutUs")
-                }}
+                onPress={() => {context.navigation.navigate("AboutUs")}}
                 iconName={handleIcon(context.icons.about, context.icons.aboutActive, 3)}
             />
         </View>

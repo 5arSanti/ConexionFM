@@ -26,6 +26,7 @@ const Home = () => {
             <GradientContainer 
                 colors={gradientColor}
                 padding={20}
+                paddingTop={40}
             >
                 <ConexionLogo/>
                 <Title 
@@ -33,7 +34,9 @@ const Home = () => {
                     color={"#848484"}
                     borderColor={"transparent"}
                 />
-                <LinkAudio/>
+                <LinkAudio
+                    isFocused={isFocused}
+                />
             </GradientContainer>
         </ScrollViewContainer>
     );

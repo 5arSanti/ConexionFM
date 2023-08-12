@@ -4,13 +4,8 @@ import * as Font from "expo-font";
 import TrackPlayer, { AppKilledPlaybackBehavior, Capability, State } from 'react-native-track-player';
 import { setUpPlayer, addTrack } from "../../musicPlayerServices.js"
 
-import { Home } from "../Screens/Home";
-import { RadioContent } from "../Screens/RadioContent";
-import { AboutUs } from "../Screens/AboutUs";
-
 import { radialContentArray } from "../utils/radialContentArray.js";
 import { socialMediaList } from "../utils/socialMediaList.js";
-import { RadialInfoCard } from "../components/RadialInfoCard/index.js";
 import { useNavigation } from "@react-navigation/native";
 
 export const MyContext = React.createContext();
@@ -249,7 +244,7 @@ const MyProvider = ({children}) => {
     }, [animationTimeout]);
 
     //Corousel de Imagenes
-    const [activeCard, setActiveCard] = React.useState(1);
+    const [activeCard, setActiveCard] = React.useState(0);
 
     return(
         <MyContext.Provider

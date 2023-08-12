@@ -14,7 +14,7 @@ const ImageCarrousel = () => {
 
     const renderImage = (item) => {
         return(
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {context.navigation.navigate("RadialInfoCard", {data: item.item})}}>
                 <Image source={item.item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
             </TouchableOpacity>
         );

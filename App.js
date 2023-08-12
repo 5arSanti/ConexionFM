@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import TrackPlayer from 'react-native-track-player';
 
@@ -17,6 +17,8 @@ import { Home } from './src/Screens/Home';
 import { RadioContent } from './src/Screens/RadioContent';
 import { AboutUs } from './src/Screens/AboutUs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RadialInfoCard } from './src/components/RadialInfoCard';
+import { GoBackButton } from './src/components/GoBackButton';
 
 
 TrackPlayer.registerPlaybackService(() => musicPlayerServices);
@@ -33,6 +35,7 @@ const MyStacks = () => {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="RadioContent" component={RadioContent} />
             <Stack.Screen name="AboutUs" component={AboutUs} />
+            <Stack.Screen name="RadialInfoCard" component={RadialInfoCard} />
         </Stack.Navigator>
     );
 }
@@ -45,8 +48,9 @@ const AppContext = () => {
             <StatusBar style='light'/>
 
             <View style={styles.screensContainer}>
+                {context.screenView === 4 && <GoBackButton/>}
                 <MyStacks/>
-                {context.screenView !== 1 && <WhatsAppButton/>}
+                {context.screenView !== 1 && context.screenView!== 4 && <WhatsAppButton/>}
                 {context.screenView !== 1 && <SecondAudioControls/>}
             </View>
 

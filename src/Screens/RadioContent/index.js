@@ -24,6 +24,7 @@ const RadioContent = () => {
             <GradientContainer 
                 colors={["#434343", "#000000"]}
                 padding={0}
+                paddingTop={40}
             >
                 <View style={styles.container}>
                     <ConexionLogo/>

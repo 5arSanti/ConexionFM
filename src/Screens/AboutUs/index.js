@@ -23,6 +23,7 @@ const AboutUs = () => {
             <GradientContainer 
                 colors={["#434343", "#000000"]}
                 padding={20}
+                paddingTop={40}
             >
                 <ConexionLogo/>
                 <Title 
