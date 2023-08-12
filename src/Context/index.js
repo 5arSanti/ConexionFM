@@ -41,36 +41,8 @@ const MyProvider = ({children}) => {
     const [radial, setRadial] = React.useState([]);
     //Social Media
     const [socialMedia, setSocialMedia] = React.useState([]);
-    //Iconos
-    const [icons, setIcons] = React.useState({});
-    const iconsList = {
-        // ConexionIcon: "../../assets/icon.png",
-
-        home: require("../../assets/nav-icons/home-icon.png"),
-        homeActive: require("../../assets/nav-icons/home-icon2.png"),
-
-        radio: require("../../assets/nav-icons/radio-icon.png"),
-        radioActive: require("../../assets/nav-icons/radio-icon2.png"),
-
-        about: require("../../assets/nav-icons/about-icon.png"),
-        aboutActive: require("../../assets/nav-icons/about-icon2.png"),
-
-        audioPlaying: require("../../assets/icons/app-icons/pause-black-icon.png"), //Sonando
-        audioPlayingWhite: require("../../assets/icons/app-icons/pause-white-icon.png"), //Sonando
-
-        audioPause: require("../../assets/icons/app-icons/play-icon.png"), //Pausa
-        audioPauseWhite: require("../../assets/icons/app-icons/play-icon-white.png"), //Pausa
-        
-        audioMute: require("../../assets/icons/app-icons/mute-icon.png"), //Mutear
-        audioMuteWhite: require("../../assets/icons/app-icons/mute-icon-white.png"), //Mutear
-        
-        audioNoMute: require("../../assets/icons/app-icons/volume-icon.png"), //Desmutear
-        audioNoMuteWhite: require("../../assets/icons/app-icons/volume-icon-white.png"), //Desmutear
-    }
 
     React.useEffect(() => {
-        setIcons(iconsList);
-
         setRadial(radialContentArray);
 
         setSocialMedia(socialMediaList)
@@ -259,7 +231,6 @@ const MyProvider = ({children}) => {
                 fontsLoaded,
                 loadFonts,
 
-                icons,
                 radial, 
                 socialMedia,
 
