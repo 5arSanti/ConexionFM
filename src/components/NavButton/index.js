@@ -3,16 +3,14 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 
 
-const NavButton = ({onPress, title, iconName}) => {
+const NavButton = ({onPress, title, children}) => {
 
     return(
         <TouchableOpacity
             onPress={() => onPress()}
             style={styles.button}
         >
-            <Image source={iconName}
-                style={{width: 35, height: 35, objectFit: "contain"}}
-            />
+            {children}
             <Text 
                 style={{color: "white", fontSize: 14, fontFamily: "Questrial"}}>
                 {title}
