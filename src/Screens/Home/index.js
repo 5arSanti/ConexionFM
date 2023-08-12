@@ -1,11 +1,14 @@
+import React from "react";
+
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { LinkAudio } from "../../components/LinkAudio";
-import React from "react";
-import { MyContext } from "../../Context";
 import { GradientContainer } from "../../components/GradientContainer";
 import { ScrollViewContainer } from "../../components/ScrollViewContainer";
 import { useIsFocused } from "@react-navigation/native";
+
+import { MyContext } from "../../Context";
+
 
 const Home = () => {
     const context = React.useContext(MyContext);

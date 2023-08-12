@@ -20,6 +20,22 @@ const MyProvider = ({children}) => {
     const navigation = useNavigation();
     const [screenView, setScreenView] = React.useState(1);
 
+    //Refresh
+    const [refreshing, setRefreshing] = React.useState(false);
+    const onRefresh = async () => {
+        setLoading(true)
+        try{
+            await TrackPlayer.pause();
+            await TrackPlayer.reset();
+            await setup();
+        }
+        catch(err){
+            alert(err);
+            console.log(err)
+            setLoading(false);
+        }
+    }
+
     //Fuentes
     const [fontsLoaded, setFontsLoaded] = React.useState(false);
 
@@ -82,11 +98,12 @@ const MyProvider = ({children}) => {
                     Capability.Stop,
                 ],
                 icon: require("../../assets/Logo-512px.png"),
-              });
-
+            });
+              
             await TrackPlayer.play();
             setIsPlaying(true);
             setLoading(false);
+
 
             if(screenView === 1){
                 setViewAnimation(true);
@@ -223,6 +240,10 @@ const MyProvider = ({children}) => {
             value={{
                 loading,
                 error,
+
+                refreshing,
+                setRefreshing,
+                onRefresh,
 
                 navigation,
                 screenView,

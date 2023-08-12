@@ -11,30 +11,20 @@ const LinkAudio = () => {
     const loadingRef = React.useRef();
   
     React.useEffect(() => {
-        if(context.isPlaying && context.viewAnimation){
+        if(context.loading){
+            loadingRef.current?.play(7, 24);
+        }
+        else if(context.isPlaying && context.viewAnimation){
             context.playFullAnimation();
         }
         else {
             loadingRef.current?.play(7, 24);
         }
-    }, [context.isPlaying, loadingRef.current, context.screenView]);
+    }, [context.loading, context.screenView, context.isPlaying]);
 
     const renderAnimation = () => {
         if(context.screenView === 1){
-            if(context.isPlaying){
-                return(
-                    <LottieView
-                        ref={context.lottieRef}
-                        source={require("../../../assets/animations/audio-animation.json")}
-                        autoPlay={false}
-                        loop={context.loop}
-                        style={{width: "100%", height: "100%"}}
-                        speed={0.8}
-                        colorFilters={colorFilter}
-                    />
-                );
-            }
-            else if (context.loading){
+            if (context.loading){
                 return(
                     <LottieView
                         ref={loadingRef}
@@ -47,6 +37,19 @@ const LinkAudio = () => {
                     />
                 );
             }
+            else if(context.isPlaying){
+                return(
+                    <LottieView
+                        ref={context.lottieRef}
+                        source={require("../../../assets/animations/audio-animation.json")}
+                        autoPlay={false}
+                        loop={context.loop}
+                        style={{width: "100%", height: "100%"}}
+                        speed={0.8}
+                        colorFilters={colorFilter}
+                    />
+                );
+            } 
             else {
                 return(
                     <LottieView

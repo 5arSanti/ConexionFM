@@ -33,6 +33,7 @@ const musicPlayerServices = async () => {
 
     TrackPlayer.addEventListener(Event.RemoteStop, () => {
         TrackPlayer.pause();
+        TrackPlayer.reset();
     })
 }
 
