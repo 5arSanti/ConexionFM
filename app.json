@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Conexión.FM",
-    "slug": "conexionfm",
+    "slug": "Conexión.FM",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/Logo-512px.png",
@@ -29,9 +29,10 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/Logo-512px.png",
-        "backgroundColor": "transparent"
+        "backgroundColor": "#EFA50B"
       },
-      "package": "com.conexionfm.conexionfmapp"
+      "package": "com.conexionfm.conexionfmapp",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/Logo-512px.png"
