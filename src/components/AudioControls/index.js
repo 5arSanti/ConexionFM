@@ -1,7 +1,8 @@
 import React from "react";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
-import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { MyContext } from "../../Context";
 
@@ -13,6 +14,13 @@ const AudioControls = () => {
         if(context.loading){
             return(
                 <ActivityIndicator size={40} color={"#EFA50B"}/>
+            );
+        }
+        else if(context.currentTrack){
+            return(
+                <TouchableOpacity onPress={() => context.onRefresh()} style={styles.buttonAudio}>
+                    <SimpleLineIcons name="reload" size={35} color="#EFA50B" />
+                </TouchableOpacity>
             );
         }
         else {

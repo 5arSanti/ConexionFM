@@ -80,7 +80,7 @@ const MyProvider = ({children}) => {
 
             await TrackPlayer.updateOptions({
                 android: {
-                    AppKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
+                    AppKilledPlaybackBehavior: AppKilledPlaybackBehavior.PausePlayback,
                 }, 
                 capabilities: [
                     Capability.Play,
@@ -125,6 +125,8 @@ const MyProvider = ({children}) => {
         setup();
     }, [])
 
+    
+    const [currentTrack, setCurrentTrack] = React.useState(true);
     React.useEffect(() => {
         const subscribeToState = async () => {
             const state = await TrackPlayer.getState();
@@ -136,8 +138,10 @@ const MyProvider = ({children}) => {
         const stateListener = TrackPlayer.addEventListener('playback-state', async () => {
             const state = await TrackPlayer.getState();
             setIsPlaying(state === State.Playing);
+            setCurrentTrack(state === State.None);
         });
     }, [])
+
 
     // Activar audio
     const [viewAnimation, setViewAnimation] = React.useState(false);
@@ -261,6 +265,7 @@ const MyProvider = ({children}) => {
                 setIsPlaying,
                 volume,
 
+                currentTrack,
                 viewAnimation,
                 setViewAnimation,
 

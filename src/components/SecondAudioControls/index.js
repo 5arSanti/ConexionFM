@@ -1,8 +1,9 @@
 import React from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { MyContext } from "../../Context";
 
 import { FontAwesome5 } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 const SecondAudioControls = () => {
     const context = React.useContext(MyContext);
@@ -12,6 +13,13 @@ const SecondAudioControls = () => {
             return(
                 <ActivityIndicator size={20} color={"#EFA50B"}/>
             );
+        }
+        else if(context.currentTrack){
+            return(
+                <TouchableOpacity onPress={() => context.onRefresh()} style={styles.buttonAudio}>
+                    <SimpleLineIcons name="reload" size={20} color="#EFA50B" />
+                </TouchableOpacity>
+            )
         }
         else {
             return(

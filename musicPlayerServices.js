@@ -1,4 +1,4 @@
-import TrackPlayer, { Event } from "react-native-track-player";
+import TrackPlayer, { Event, IOSCategory, IOSCategoryOptions } from "react-native-track-player";
 
 import { playListData } from "./src/utils/playListData";
 
@@ -9,7 +9,12 @@ export const setUpPlayer = async () => {
         isSetup = true;
     }
     catch(err){
-        await TrackPlayer.setupPlayer();
+        await TrackPlayer.setupPlayer({
+            iosCategory: IOSCategory.Playback,
+            iosCategoryOptions: [
+                IOSCategoryOptions.DuckOthers,
+            ]
+        });
         isSetup = true;
     }
     finally{
