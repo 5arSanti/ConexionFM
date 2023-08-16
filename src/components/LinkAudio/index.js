@@ -23,46 +23,44 @@ const LinkAudio = () => {
     }, [context.loading, context.screenView, context.isPlaying]);
 
     const renderAnimation = () => {
-        if(context.screenView === 1){
-            if (context.loading){
-                return(
-                    <LottieView
-                        ref={loadingRef}
-                        source={require("../../../assets/animations/audio-animation.json")}
-                        autoPlay={true}
-                        loop={true}
-                        style={{width: "100%", height: "100%"}}
-                        speed={0.8}
-                        colorFilters={colorFilter}
-                    />
-                );
-            }
-            else if(context.isPlaying){
-                return(
-                    <LottieView
-                        ref={context.lottieRef}
-                        source={require("../../../assets/animations/audio-animation.json")}
-                        autoPlay={false}
-                        loop={context.loop}
-                        style={{width: "100%", height: "100%"}}
-                        speed={0.8}
-                        colorFilters={colorFilter}
-                    />
-                );
-            } 
-            else {
-                return(
-                    <LottieView
-                        ref={loadingRef}
-                        source={require("../../../assets/animations/audio-animation.json")}
-                        autoPlay={false}
-                        loop={false}
-                        style={{width: "100%", height: "100%"}}
-                        speed={0}
-                        colorFilters={colorFilter}
-                    />
-                );
-            }
+        if (context.loading){
+            return(
+                <LottieView
+                    ref={loadingRef}
+                    source={require("../../../assets/animations/audio-animation.json")}
+                    autoPlay={true}
+                    loop={true}
+                    style={{width: "100%", height: "100%"}}
+                    speed={0.8}
+                    colorFilters={colorFilter}
+                />
+            );
+        }
+        else if(context.isPlaying){
+            return(
+                <LottieView
+                    ref={context.lottieRef}
+                    source={require("../../../assets/animations/audio-animation.json")}
+                    autoPlay={false}
+                    loop={context.loop}
+                    style={{width: "100%", height: "100%"}}
+                    speed={0.8}
+                    colorFilters={colorFilter}
+                />
+            );
+        } 
+        else {
+            return(
+                <LottieView
+                    ref={loadingRef}
+                    source={require("../../../assets/animations/audio-animation.json")}
+                    autoPlay={false}
+                    loop={false}
+                    style={{width: "100%", height: "100%"}}
+                    speed={0}
+                    colorFilters={colorFilter}
+                />
+            );
         }
     }
 

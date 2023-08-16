@@ -27,19 +27,28 @@ const NavigationButtons = () => {
         <View style={styles.buttonsContainer}>
             <NavButton 
                 title={"Inicio"}
-                onPress={() => {context.navigation.navigate("Home")}}
+                onPress={() => {
+                    context.navigation.navigate("Home");
+                    context.setScreenView(1);
+                }}
             >
                 <MaterialCommunityIcons name="waveform" size={size} color={handleIcon(1)} />
             </NavButton>
             <NavButton 
                 title={"Contenido"}
-                onPress={() => {context.navigation.navigate("RadioContent")}}
+                onPress={() => {
+                    context.navigation.navigate("RadioContent");
+                    context.setScreenView(2);
+                }}
             >
                 <Ionicons name="md-radio" size={size} color={handleIcon(2)} />
             </NavButton>
             <NavButton 
                 title={"Contacto"}
-                onPress={() => {context.navigation.navigate("AboutUs")}}
+                onPress={() => {
+                    context.navigation.navigate("AboutUs");
+                    context.setScreenView(3);
+                }}
             >
                 <MaterialCommunityIcons name="account-group" size={size} color={handleIcon(3)} />
             </NavButton>
