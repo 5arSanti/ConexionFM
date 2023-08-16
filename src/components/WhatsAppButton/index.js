@@ -13,7 +13,7 @@ const WhatsAppButton = () => {
             await Linking.openURL(url);
         }
         else {
-            alert("No se pudo abrir");
+            alert("Sucedió un error, lo estamos solucionando.");
             context.setError(true);
         }
     }

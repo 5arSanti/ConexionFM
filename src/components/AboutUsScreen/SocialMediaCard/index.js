@@ -10,7 +10,7 @@ const SocialMediaCard = (data) => {
             await Linking.openURL(url);
         }
         else {
-            alert("Ocurrió un error");
+            alert("Sucedió un error, lo estamos solucionando.");
         }
     }
 

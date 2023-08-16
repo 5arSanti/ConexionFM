@@ -30,8 +30,7 @@ const MyProvider = ({children}) => {
             await setup();
         }
         catch(err){
-            alert(err);
-            console.log(err)
+            alert("Sucedió un error, lo estamos solucionando.");
             setLoading(false);
         }
     }
@@ -115,8 +114,7 @@ const MyProvider = ({children}) => {
         catch(err){
             setLoading(false);
             setError(true);
-            alert("Sucedio un error: ", err);
-            console.log(err);
+            alert("Sucedió un error, lo estamos solucionando.");
         }
         
     }
@@ -164,8 +162,7 @@ const MyProvider = ({children}) => {
         catch(err){
             setLoading(false);
             setError(true);
-            alert("Sucedio un error: ", err);
-            console.log(err);
+            alert("Sucedió un error, lo estamos solucionando.");
         }
     }
 
@@ -187,8 +184,8 @@ const MyProvider = ({children}) => {
             }
         }
         catch(err){
-            alert("Ocurrio un error.")
-            console.log(err);
+            setError(true);
+            alert("Sucedió un error, lo estamos solucionando.");
         }
     }
 
