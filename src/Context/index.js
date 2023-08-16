@@ -30,8 +30,10 @@ const MyProvider = ({children}) => {
             await setup();
         }
         catch(err){
-            alert("Sucedió un error, lo estamos solucionando.");
             setLoading(false);
+            setError(true);
+            alert("Sucedió un error, lo estamos solucionando.");
+            setCurrentTrack(false);
         }
     }
 
@@ -65,7 +67,7 @@ const MyProvider = ({children}) => {
 
 
     //Emisora
-    const [isPlaying, setIsPlaying] = React.useState(false);
+    const [isPlaying, setIsPlaying] = React.useState(null);
     const [isPlayerReady, setIsPlayerReady] = React.useState(false);
 
     const setup = async () => {
@@ -98,11 +100,11 @@ const MyProvider = ({children}) => {
                 ],
                 icon: require("../../assets/Logo-512px.png"),
             });
-              
+            
+            const state = await TrackPlayer.getState();
             await TrackPlayer.play();
             setIsPlaying(true);
             setLoading(false);
-
 
             if(screenView === 1){
                 setViewAnimation(true);
@@ -115,6 +117,7 @@ const MyProvider = ({children}) => {
             setLoading(false);
             setError(true);
             alert("Sucedió un error, lo estamos solucionando.");
+            setCurrentTrack(false);
         }
         
     }
@@ -137,6 +140,8 @@ const MyProvider = ({children}) => {
             const state = await TrackPlayer.getState();
             setIsPlaying(state === State.Playing);
             setCurrentTrack(state === State.None);
+            setLoading(state === State.Connecting);
+            setLoading(state === State.Buffering);
         });
     }, [])
 
@@ -146,6 +151,7 @@ const MyProvider = ({children}) => {
 
     const handleAudio = async () => {
         const currentTrack = await TrackPlayer.getCurrentTrack();
+        const state = await TrackPlayer.getState();
         try {
             if (currentTrack !== null){
                 if(isPlaying){
@@ -163,6 +169,7 @@ const MyProvider = ({children}) => {
             setLoading(false);
             setError(true);
             alert("Sucedió un error, lo estamos solucionando.");
+            setCurrentTrack(false);
         }
     }
 
@@ -172,13 +179,11 @@ const MyProvider = ({children}) => {
     const handleVolume = async () => {
         try {
             if(volume === 1){
-                // await sound.setVolumeAsync(0);
                 await TrackPlayer.setVolume(0);
                 setVolume(0);
                 
             }
             else{
-                // await sound.setVolumeAsync(1);
                 await TrackPlayer.setVolume(1);
                 setVolume(1);                
             }
@@ -186,6 +191,7 @@ const MyProvider = ({children}) => {
         catch(err){
             setError(true);
             alert("Sucedió un error, lo estamos solucionando.");
+            setCurrentTrack(false);
         }
     }
 
