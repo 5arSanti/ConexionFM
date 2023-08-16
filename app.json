@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Conexión.FM",
-    "slug": "Conexión.FM",
+    "slug": "conexionfm",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/Logo-512px.png",
