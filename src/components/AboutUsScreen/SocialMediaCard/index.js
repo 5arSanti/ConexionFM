@@ -1,24 +1,22 @@
 import { Image, Linking, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const SocialMediaCard = (data) => {
+const SocialMediaCard = ({data}) => {
 
     const handleOpenSocialMedia = async () => {
-        const url = data.data?.link;
-        const supported = await Linking.canOpenURL(url)
-
-        if(supported){
+        try {
+            const url = data?.link;
             await Linking.openURL(url);
-        }
-        else {
+        } catch (err) {
             alert("Sucedió un error, lo estamos solucionando.");
         }
+
     }
 
 
     return(
         <TouchableOpacity style={styles.socialMediaCardContainer} onPress={() => {handleOpenSocialMedia()}}>
-            <Image source={data.data?.image[0]} style={styles.socialIcon}/>
-            <Text style={styles.socialMediaText}>{data.data?.name}</Text>
+            <Image source={data?.image[0]} style={styles.socialIcon}/>
+            <Text style={styles.socialMediaText}>{data?.name}</Text>
         </TouchableOpacity>
     );
 }

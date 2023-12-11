@@ -40,6 +40,7 @@ const Home = () => {
                 <LinkAudio
                     isFocused={isFocused}
                 />
+                <ConexionLogo/>
             </GradientContainer>
         </ScrollViewContainer>
     );

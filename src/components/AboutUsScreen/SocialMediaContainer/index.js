@@ -8,9 +8,9 @@ const SocialMediaContainer = () => {
 
     return(
         <View style={styles.socialMediaGrid}>
-            {context.socialMedia?.map((item) => (
+            {context.socialMedia?.map((item, index) => (
                 <SocialMediaCard
-                    key={item.id}
+                    key={index}
                     data={item}
                 />
             ))}
