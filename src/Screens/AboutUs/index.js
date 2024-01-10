@@ -6,6 +6,7 @@ import { SocialMediaContainer } from "../../components/AboutUsScreen/SocialMedia
 import { ScrollViewContainer } from "../../components/ScrollViewContainer";
 import { useIsFocused } from "@react-navigation/native";
 import { MyContext } from "../../Context";
+import { AdCarrousel } from "../../components/AdCarrousel";
 
 const AboutUs = () => {
     const context = React.useContext(MyContext);
@@ -21,7 +22,7 @@ const AboutUs = () => {
     return(
         <ScrollViewContainer>
             <GradientContainer 
-                colors={["#434343", "#000000"]}
+                colors={["#5B5B5B", "#000000"]}
                 padding={20}
                 paddingTop={40}
             >
@@ -33,6 +34,10 @@ const AboutUs = () => {
                 />
 
                 <SocialMediaContainer/>
+
+                <AdCarrousel 
+                    padding={20}
+                />
                 
             </GradientContainer>
         </ScrollViewContainer>

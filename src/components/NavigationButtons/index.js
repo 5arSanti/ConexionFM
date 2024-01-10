@@ -34,6 +34,7 @@ const NavigationButtons = () => {
             >
                 <MaterialCommunityIcons name="waveform" size={size} color={handleIcon(1)} />
             </NavButton>
+
             <NavButton 
                 title={"Contenido"}
                 onPress={() => {
@@ -43,6 +44,7 @@ const NavigationButtons = () => {
             >
                 <Ionicons name="md-radio" size={size} color={handleIcon(2)} />
             </NavButton>
+
             <NavButton 
                 title={"Contacto"}
                 onPress={() => {
@@ -61,7 +63,6 @@ export { NavigationButtons };
 const styles = StyleSheet.create({
     buttonsContainer: {
         width: "100%",
-        height: "10%",
 
         borderRadius: 10,
 
@@ -69,6 +70,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        gap: 25,
+        gap: 20,
     }
 })

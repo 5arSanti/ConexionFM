@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 
-const GradientContainer = ({children, colors, padding, paddingTop}) => {
+const GradientContainer = ({children, colors, padding, paddingTop, gap=20}) => {
     return(
         <LinearGradient 
             colors={colors}
@@ -11,7 +11,7 @@ const GradientContainer = ({children, colors, padding, paddingTop}) => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: 20,
+                gap: gap,
         
                 padding: padding,
                 paddingTop: paddingTop,

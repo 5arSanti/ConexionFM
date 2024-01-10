@@ -3,10 +3,12 @@ import * as Font from "expo-font";
 
 import TrackPlayer, { AppKilledPlaybackBehavior, Capability, State } from 'react-native-track-player';
 import { setUpPlayer, addTrack } from "../../musicPlayerServices.js"
+import { useNavigation } from "@react-navigation/native";
+
 
 import { radialContentArray } from "../utils/radialContentArray.js";
 import { socialMediaList } from "../utils/socialMediaList.js";
-import { useNavigation } from "@react-navigation/native";
+import { adsArray } from "../utils/adsArray.js";
 
 export const MyContext = React.createContext();
 
@@ -58,11 +60,13 @@ const MyProvider = ({children}) => {
     const [radial, setRadial] = React.useState([]);
     //Social Media
     const [socialMedia, setSocialMedia] = React.useState([]);
+    // Ads
+    const [ads, setAds] = React.useState([])
 
     React.useEffect(() => {
         setRadial(radialContentArray);
-
-        setSocialMedia(socialMediaList)
+        setSocialMedia(socialMediaList);
+        setAds(adsArray);
     }, []);
 
 
@@ -181,7 +185,6 @@ const MyProvider = ({children}) => {
             if(volume === 1){
                 await TrackPlayer.setVolume(0);
                 setVolume(0);
-                
             }
             else{
                 await TrackPlayer.setVolume(1);
@@ -195,10 +198,12 @@ const MyProvider = ({children}) => {
         }
     }
 
+
     //Animacion
     const [loop, setLoop] = React.useState(false);
     const lottieRef = React.useRef(null);
     const [animationTimeout, setAnimationTimeout] = React.useState(null);
+
 
     const playFullAnimation = () => {
         setLoop(false);
@@ -261,6 +266,7 @@ const MyProvider = ({children}) => {
 
                 radial, 
                 socialMedia,
+                ads,
 
                 handleAudio,
                 handleVolume,

@@ -1,21 +1,26 @@
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
 
 import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { MyContext } from "../../Context";
-import React from "react";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-import { RadialInfoCard } from '../RadialInfoCard';
 
 const ImageCarrousel = () => {
     const context = React.useContext(MyContext);
-    const carouselRef = React.useRef();
+    const radialCarouselRef = React.useRef();
 
     const screenWidth = Dimensions.get("window").width - 40;
 
     const renderImage = (item) => {
         return(
-            <TouchableOpacity onPress={() => {context.navigation.navigate("RadialInfoCard", {data: item.item})}}>
-                <Image source={item.item?.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
+            <TouchableOpacity 
+                onPress={() => {
+                    context.navigation.navigate("RadialInfoCard", {data: item.item})
+                }}
+            >
+                <Image 
+                    source={item.item?.image} 
+                    style={{width: "100%", height: "100%", objectFit: "cover"}}
+                />
             </TouchableOpacity>
         );
     }
@@ -23,16 +28,23 @@ const ImageCarrousel = () => {
     return(
         <View style={styles.carrouselContainer}>
             <Carousel
-                ref={carouselRef}
+                ref={radialCarouselRef}
                 data={context.radial}
                 renderItem={renderImage}
                 sliderWidth={screenWidth}
                 itemWidth={screenWidth}
-                // loop
+
+                loop
+                autoplay={true}
+                autoplayInterval={4000}
+
+                enableMomentum={false}
+                lockScrollWhileSnapping={true}
 
                 layout="default"
                 onSnapToItem={(index) => {context.setActiveCard(index)}}
             />
+
             <View style={styles.paginationContainerContainer}>
                 <Pagination
                     dotsLength={context.radial.length}
@@ -46,7 +58,7 @@ const ImageCarrousel = () => {
                     inactiveDotOpacity={0.5}
                     inactiveDotScale={0.5}
 
-                    carouselRef={carouselRef}
+                    carouselRef={radialCarouselRef}
                     tappableDots={true}
                 />
             </View>

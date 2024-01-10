@@ -33,22 +33,28 @@ const RadialInfoCard = ({route}) => {
 
                     <View style={{position: "relative", width: "100%", height: 400}}>
                         <Image source={data.image} style={{width: "100%", height: "100%", objectFit: "cover"}}/>
-                        <Text style={styles.radialTitle}>{data.name}</Text>
+                        
+                        <Text style={styles.radialTitle}>
+                            {data.name}
+                        </Text>
                     </View>
                     
 
                     <View style={{paddingHorizontal: 20, gap: 20, alignItems: "center"}}>
                         <Title title={"Sobre el Programa"} color={"#FFF"} borderColor={"#EFA50B"}/>
-                        <Text style={styles.radialInfoText}>{data.info}</Text>
+                        
+                        <Text style={styles.radialInfoText}>
+                            {data.info}
+                        </Text>
                     </View>
 
                     <View style={{paddingHorizontal: 20, marginTop: 30, marginBottom: 20, gap: 20, alignItems: "center"}}>
 
                         <Title title={"Dias de emisión"} color={"#FFF"} borderColor={"#EFA50B"}/>
                         <View style={styles.emisionDaysGrid}>
-                            {data.emision.map((data) => (
+                            {data.emision?.map((data, index) => (
                                 <EmisionCard
-                                    key={data.id}
+                                    key={index}
                                     data={data}
                                 />
                             ))}

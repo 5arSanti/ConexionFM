@@ -9,6 +9,8 @@ import { useIsFocused } from "@react-navigation/native";
 
 import { MyContext } from "../../Context";
 
+import { AdCarrousel } from "../../components/AdCarrousel";
+
 
 const Home = () => {
     const context = React.useContext(MyContext);
@@ -40,7 +42,7 @@ const Home = () => {
                 <LinkAudio
                     isFocused={isFocused}
                 />
-                <ConexionLogo/>
+                <AdCarrousel/>
             </GradientContainer>
         </ScrollViewContainer>
     );

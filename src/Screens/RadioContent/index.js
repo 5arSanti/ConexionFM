@@ -7,6 +7,7 @@ import { ImageCarrousel } from "../../components/ImageCarrousel";
 import { ScrollViewContainer } from "../../components/ScrollViewContainer";
 import { useIsFocused } from "@react-navigation/native";
 import { MyContext } from "../../Context";
+import { AdCarrousel } from "../../components/AdCarrousel";
 
 const RadioContent = () => {
     const context = React.useContext(MyContext);
@@ -22,9 +23,10 @@ const RadioContent = () => {
     return(
         <ScrollViewContainer>
             <GradientContainer 
-                colors={["#434343", "#000000"]}
+                colors={["#5B5B5B", "#000000"]}
                 padding={0}
                 paddingTop={40}
+                gap={25}
             >
                 <View style={styles.container}>
                     <ConexionLogo/>
@@ -36,13 +38,20 @@ const RadioContent = () => {
                 </View>
 
                 <ImageCarrousel/>
+                <AdCarrousel
+                    padding={20}
+                />
+
                 <View style={styles.container}>
                     <Title 
                         title={"Descubre más!"} 
                         color={"#FFF"}
                         borderColor={"white"}
                     />
-                    <Image style={{flex: 1, width: "100%", objectFit: "contain", height: 400, marginBottom: 20,}} source={require("../../../assets/logos/ConexionFMv3.png")}/>
+                    <Image 
+                        style={{width: "100%", objectFit: "cover", height: 400, marginBottom: 20,}} 
+                        source={require("../../../assets/logos/ConexionFMv3.png")}
+                    />
                 </View>
             </GradientContainer>
         </ScrollViewContainer>
@@ -52,10 +61,11 @@ export { RadioContent };
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1, 
         width: "100%", 
+
+        display: "flex",
         alignItems: "center",
-        gap: 20,
+        gap: 10,
 
         paddingHorizontal: 20,
     }
