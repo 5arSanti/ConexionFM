@@ -12,8 +12,8 @@
     },
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#242424"
+      "resizeMode": "cover",
+      "backgroundColor": "#FFF"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,7 +24,8 @@
         "UIBackgroundModes": [
           "audio"
         ]
-      }
+      },
+      "bundleIdentifier": "com.conexionfm.conexionfmapp"
     },
     "android": {
       "adaptiveIcon": {
