@@ -1,47 +1,65 @@
 {
-  "expo": {
-    "name": "Conexión.FM",
-    "slug": "conexionfm",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/Logo-512px.png",
-    "userInterfaceStyle": "dark",
-    "primaryColor": "#EFA50B",
-    "notification": {
-      "icon": "./assets/Logo-512px.png"
-    },
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#FFF"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
-      },
-      "bundleIdentifier": "com.conexionfm.conexionfmapp"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/Logo-512px.png",
-        "backgroundColor": "#EFA50B"
-      },
-      "package": "com.conexionfm.conexionfmapp",
-      "versionCode": 1
-    },
-    "web": {
-      "favicon": "./assets/Logo-512px.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "f4cdfc18-0c0b-4eb9-8332-5f54d8d3a3f7"
-      }
-    }
-  }
+"expo": {
+	"name": "Conexión.FM",
+	"slug": "conexionfm",
+	"version": "1.0.0",
+	"orientation": "portrait",
+	"icon": "./assets/icon.png",
+	"userInterfaceStyle": "dark",
+	"primaryColor": "#EFA50B",
+	"notification": {
+	"icon": "./assets/icon.png",
+	"color": "#EFA50B"
+	},
+	
+	"splash": {
+		"image": "./assets/splash.png",
+		"resizeMode": "cover",
+		"backgroundColor": "#FFF"
+	},
+	"assetBundlePatterns": [
+		"**/*"
+	],
+
+	"ios": {
+		"supportsTablet": true,
+		"infoPlist": {
+			"UIBackgroundModes": [
+				"audio"
+			]
+		},
+		"bundleIdentifier": "com.conexionfm.conexionfmapp",
+		"icon": "./assets/icon.png",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "cover",
+			"backgroundColor": "#FFF"
+		}
+	},
+
+	"android": {
+		"icon": "./assets/icon.png",
+		"adaptiveIcon": {
+			"foregroundImage": "./assets/icon.png",
+			"backgroundColor": "#EFA50B"
+		},
+		"package": "com.conexionfm.conexionfmapp",
+		"versionCode": 1,
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "cover",
+			"backgroundColor": "#FFF"
+		}
+	},
+
+	"web": {
+		"favicon": "./assets/icon.png"
+	},
+
+	"extra": {
+		"eas": {
+			"projectId": "f4cdfc18-0c0b-4eb9-8332-5f54d8d3a3f7"
+		}
+	}
+}
 }
