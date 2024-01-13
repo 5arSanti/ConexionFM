@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#FFF"
+      "backgroundColor": "#EFA50B"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -28,28 +28,16 @@
           "audio"
         ]
       },
-      "bundleIdentifier": "com.conexionfm.conexionfmapp",
-      "icon": "./assets/icon.png",
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "cover",
-        "backgroundColor": "#FFF"
-      }
+      "bundleIdentifier": "com.conexionfm.conexionfmapp"
     },
   
     "android": {
-      "icon": "./assets/icon.png",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#EFA50B"
       },
       "package": "com.conexionfm.conexionfmapp",
-      "versionCode": 1,
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "cover",
-        "backgroundColor": "#FFF"
-      }
+      "versionCode": 1
     },
   
     "web": {
