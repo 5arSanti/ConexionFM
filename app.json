@@ -5,11 +5,12 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+	
     "userInterfaceStyle": "dark",
     "primaryColor": "#EFA50B",
     "notification": {
-    "icon": "./assets/icon.png",
-    "color": "#EFA50B"
+		"icon": "./assets/icon.png",
+		"color": "#EFA50B"
     },
     
     "splash": {
@@ -21,6 +22,15 @@
       "**/*"
     ],
   
+	"android": {
+		"adaptiveIcon": {
+		  "foregroundImage": "./assets/adaptive-icon.png",
+		  "backgroundColor": "#EFA50B"
+		},
+		"package": "com.conexionfm.conexionfmapp",
+		"versionCode": 1
+	  },
+
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -29,15 +39,6 @@
         ]
       },
       "bundleIdentifier": "com.conexionfm.conexionfmapp"
-    },
-  
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#EFA50B"
-      },
-      "package": "com.conexionfm.conexionfmapp",
-      "versionCode": 1
     },
   
     "web": {
