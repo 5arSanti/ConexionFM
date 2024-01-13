@@ -1,20 +1,16 @@
-import { Image, Linking, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React from "react";
+
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { MyContext } from "../../../Context";
 
 const SocialMediaCard = ({data}) => {
-
-    const handleOpenSocialMedia = async () => {
-        try {
-            const url = data?.link;
-            await Linking.openURL(url);
-        } catch (err) {
-            alert("Sucedió un error, lo estamos solucionando.");
-        }
-
-    }
-
+    const context = React.useContext(MyContext);
 
     return(
-        <TouchableOpacity style={styles.socialMediaCardContainer} onPress={() => {handleOpenSocialMedia()}}>
+        <TouchableOpacity 
+            style={styles.socialMediaCardContainer} 
+            onPress={() => {context.handleOpenSocialMedia(data?.link)}}
+        >
             <Image source={data?.image[0]} style={styles.socialIcon}/>
             <Text style={styles.socialMediaText}>{data?.name}</Text>
         </TouchableOpacity>

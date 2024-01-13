@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, StyleSheet, View,} from "react-native";
+import { Image, StyleSheet, View, TouchableOpacity} from "react-native";
+
 import { ConexionLogo } from "../../components/ConexionLogo";
 import { Title } from "../../components/Title";
 import { GradientContainer } from "../../components/GradientContainer";
@@ -48,10 +49,17 @@ const RadioContent = () => {
                         color={"#FFF"}
                         borderColor={"white"}
                     />
-                    <Image 
-                        style={{width: "100%", objectFit: "cover", height: 400, marginBottom: 20,}} 
-                        source={require("../../../assets/logos/ConexionFMv3.png")}
-                    />
+
+                    <TouchableOpacity
+                        onPress={() => {context.handleOpenSocialMedia("https://www.conexion.fm/")}}
+                        style={styles.imageContainer}
+                    >
+                        <Image 
+                            style={{width: "100%", objectFit: "cover", height: 400, marginBottom: 20,}} 
+                            source={require("../../../assets/logos/ConexionFMv3.png")}
+                        />
+                    </TouchableOpacity>
+
                 </View>
             </GradientContainer>
         </ScrollViewContainer>
@@ -65,8 +73,12 @@ const styles = StyleSheet.create({
 
         display: "flex",
         alignItems: "center",
-        gap: 10,
+        gap: 20,
 
         paddingHorizontal: 20,
+    },
+    imageContainer: {
+        width: "100%",
+        // paddingHorizontal: 10,
     }
 })

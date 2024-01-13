@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { radialContentArray } from "../utils/radialContentArray.js";
 import { socialMediaList } from "../utils/socialMediaList.js";
 import { adsArray } from "../utils/adsArray.js";
+import { Linking } from "react-native";
 
 export const MyContext = React.createContext();
 
@@ -247,6 +248,17 @@ const MyProvider = ({children}) => {
     //Corousel de Imagenes
     const [activeCard, setActiveCard] = React.useState(0);
 
+
+    //Open Links
+    const handleOpenSocialMedia = async (url) => {
+        try {
+            await Linking.openURL(url);
+        } catch (err) {
+            alert("Sucedió un error, lo estamos solucionando.");
+        }
+    }
+
+
     return(
         <MyContext.Provider
             value={{
@@ -284,6 +296,8 @@ const MyProvider = ({children}) => {
 
                 activeCard,
                 setActiveCard,
+
+                handleOpenSocialMedia,
             }}
         >
             {children}

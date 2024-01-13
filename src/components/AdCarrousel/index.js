@@ -12,9 +12,7 @@ const AdCarrousel = ({padding = 0}) => {
     const renderImage = (data) => {
         return(
             <TouchableOpacity 
-                onPress={() => {
-                    context.navigation.navigate("RadialInfoCard", {data: data.item})
-                }}
+                onPress={() => {context.handleOpenSocialMedia(data.item?.link)}}
                 style={styles.adTouchableContainer}
             >
                 <Image 

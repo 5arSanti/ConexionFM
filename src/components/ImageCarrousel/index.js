@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { MyContext } from "../../Context";
@@ -9,6 +9,10 @@ const ImageCarrousel = () => {
     const radialCarouselRef = React.useRef();
 
     const screenWidth = Dimensions.get("window").width - 40;
+
+    useEffect(() => {
+        context.setActiveCard(0);
+    },[])
 
     const renderImage = (item) => {
         return(
